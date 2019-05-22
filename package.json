@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A React wrapper for boclips-player",
   "scripts": {
+    "audit": "audit-ci -m"
   },
   "author": "Boclips <engineering@boclips.com>",
   "contributors": [
@@ -16,5 +17,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boclips/boclips-player-react.git"
+  },
+  "devDependencies": {
+    "audit-ci": "^1.7.0"
   }
 }
