@@ -1,0 +1,20 @@
+{
+  "name": "boclips-player-react",
+  "version": "0.1.0",
+  "description": "A React wrapper for boclips-player",
+  "scripts": {
+  },
+  "author": "Boclips <engineering@boclips.com>",
+  "contributors": [
+    "Antony O'Neill <antony@boclips.com>"
+  ],
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/boclips/boclips-player-react/issues"
+  },
+  "homepage": "https://github.com/boclips/boclips-player-react#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boclips/boclips-player-react.git"
+  }
+}
