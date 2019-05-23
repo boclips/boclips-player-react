@@ -34,6 +34,8 @@
     "@types/jest": "^24.0.13",
     "@types/react": "^16.8.18",
     "audit-ci": "^1.7.0",
+    "axios-logger": "^1.0.0",
+    "axios-mock-adapter": "^1.16.0",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^2.0.2",
     "css-loader": "^2.1.1",
