@@ -10,7 +10,8 @@
     "build": "webpack",
     "lint": "tslint -c tslint.json -p .",
     "lint:fix": "npm run lint -- --fix",
-    "prepublishOnly": "npm run lint && npm run test && npm run build"
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "demo": "./node_modules/.bin/webpack-dev-server --config demo/webpack.config.js"
   },
   "author": "Boclips <engineering@boclips.com>",
   "contributors": [
