@@ -5,7 +5,7 @@
   "main": "dist/boclips-player-react.js",
   "scripts": {
     "audit": "audit-ci -m",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "compile": "tsc -p . --noEmit",
     "build": "webpack",
     "lint": "tslint -c tslint.json -p .",
