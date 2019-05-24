@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BoclipsPlayer } from '../src/BoclipsPlayer';
+import { Player } from '../src/Player';
 
 const container = document.querySelector('#container');
 
-ReactDOM.render(<BoclipsPlayer/>, container);
+ReactDOM.render(<Player/>, container);
