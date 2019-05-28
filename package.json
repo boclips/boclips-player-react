@@ -6,8 +6,8 @@
   "scripts": {
     "audit": "audit-ci -m",
     "test": "jest --passWithNoTests",
-    "compile": "tsc -p . --noEmit",
-    "build": "webpack",
+    "compile": "tsc -p tsconfig.all.json --noEmit",
+    "build": "./scripts/build.sh",
     "lint": "tslint -c tslint.json -p .",
     "lint:fix": "npm run lint -- --fix",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
@@ -27,9 +27,12 @@
     "url": "git+https://github.com/boclips/boclips-player-react.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "lib",
+    "esm"
   ],
-  "module": "src/BoclipsPlayer.ts",
+  "typings": "lib/Player.d.ts",
+  "module": "esm/Player.js",
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/enzyme": "^3.9.3",
