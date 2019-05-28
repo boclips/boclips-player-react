@@ -1,6 +1,7 @@
 # Boclips Player React Wrapper
 
-![concourse](https://concourse.devboclips.net/api/v1/teams/main/pipelines/boclips-player-react/jobs/test/badge) [![npm version](https://badge.fury.io/js/boclips-player-react.svg)](https://www.npmjs.com/package/boclips-player-react)
+![concourse](https://concourse.devboclips.net/api/v1/teams/main/pipelines/boclips-player-react/jobs/test/badge)
+[![npm version](https://badge.fury.io/js/boclips-player-react.svg)](https://www.npmjs.com/package/boclips-player-react)
 
 Boclips Player is a framework agnostic video player for use with the Boclips API.
 
