@@ -1,36 +1,89 @@
 ---
+groups:
+- name: develop
+  jobs:
+    - test
+    - pre-release
+- name: release
+  jobs:
+    - major
+    - minor
+    - release
+
 jobs:
-- name: build
+- name: test
   plan:
   - get: once-per-weekday
     trigger: true
   - get: source
     trigger: true
-  - task: build
-    file: source/pipeline/build.yml
+  - task: test
+    file: source/pipeline/test.yml
 
-- name: publish
+- name: pre-release
   plan:
   - get: source
-    passed: [build]
+    passed: [test]
+    trigger: true
+  - put: version
+    params:
+      pre: dev
+  - task: release
+    file: source/pipeline/release.yml
+  - put: npm-registry
+    params:
+      username: ((npm-username))
+      password: ((npm-password))
+      email: engineering@boclips.com
+      path: dist
+      tag: dev
+  - put: version
+    params:
+      file: version/version
+
+- name: major
+  plan:
+  - put: version
+    params:
+      bump: major
+
+- name: minor
+  plan:
   - put: version
     params:
       bump: minor
-  - task: publish
-    file: source/pipeline/publish.yml
+
+- name: release
+  plan:
+  - get: source
+    passed: [pre-release]
+  - get: version
+    params:
+      bump: final
+  - task: release
+    file: source/pipeline/release.yml
   - put: npm-registry
     params:
-      username: {{npm-username}}
-      password: {{npm-password}}
+      username: ((npm-username))
+      password: ((npm-password))
       email: engineering@boclips.com
       path: dist
+  - put: github-release
+    params:
+      name: release/name
+      tag: release/name
+      body: release/notes
+      commitish: source/.git/ref
+  - put: version
+    params:
+      bump: patch
 
 resources:
 - name: source
   type: git
   source:
     branch: master
-    private_key: {{boclips-player-react-repo-key}}
+    private_key: ((boclips-player-react-repo-key))
     uri: git@github.com:boclips/boclips-player-react.git
 
 - name: version
@@ -41,7 +94,7 @@ resources:
     uri: git@github.com:boclips/versions.git
     branch: master
     file: boclips-player-react
-    private_key: {{versions-repo-key}}
+    private_key: ((versions-repo-key))
 
 - name: npm-registry
   type: npm-resource
@@ -55,6 +108,13 @@ resources:
     stop: 12:30 PM
     days: [Monday, Tuesday, Wednesday, Thursday, Friday]
     location: Europe/London
+
+- name: github-release
+  type: github-release
+  source:
+    owner: boclips
+    repository: boclips-player-react
+    access_token: ((github-access-token))
 
 resource_types:
 - name: npm-resource
