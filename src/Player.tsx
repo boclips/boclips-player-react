@@ -1,27 +1,19 @@
 import { BoclipsPlayer, BoclipsPlayerFactory } from 'boclips-player';
 import * as React from 'react';
 
-interface Props {
+export interface Props {
   playerRef?: (player: BoclipsPlayer) => void;
   videoUri?: string;
   handlePlay?: () => Promise<void>;
   handlePause?: () => void;
 }
 
-interface State {
-  error: boolean;
-}
-
 const noop: (args?: any) => any = () => {};
 
-export class Player extends React.Component<Props, State> {
+export class Player extends React.Component<Props> {
   private container: HTMLDivElement;
   // @ts-ignore
   private player: BoclipsPlayer;
-
-  public state: State = {
-    error: false,
-  };
 
   public static defaultProps: Partial<Props> = {
     videoUri: null,
@@ -49,20 +41,7 @@ export class Player extends React.Component<Props, State> {
     }
   }
 
-  public componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    this.setState({ error: true });
-    console.error(
-      'An error occurred within the Player component.',
-      error,
-      errorInfo,
-    );
-  }
-
   public render() {
-    if (this.state.error) {
-      return <div>An error has occurred.</div>;
-    }
-
     return (
       <div
         ref={container => {
