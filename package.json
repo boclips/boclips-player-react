@@ -1,44 +1,50 @@
 {
   "name": "boclips-player-react",
-  "version": "0.1.0",
   "description": "A React wrapper for boclips-player",
-  "main": "dist/boclips-player-react.js",
-  "scripts": {
-    "audit": "audit-ci -m",
-    "test": "jest --passWithNoTests",
-    "compile": "tsc -p tsconfig.all.json --noEmit",
-    "build": "./scripts/build.sh",
-    "lint": "tslint -c tslint.json -p .",
-    "lint:fix": "npm run lint -- --fix",
-    "prepublishOnly": "npm run lint && npm run test && npm run build",
-    "demo": "./node_modules/.bin/webpack-dev-server --config demo/webpack.config.js"
-  },
+  "license": "BSD-3-Clause",
   "author": "Boclips <engineering@boclips.com>",
   "contributors": [
     "Antony O'Neill <antony@boclips.com>"
   ],
-  "license": "BSD-3-Clause",
-  "bugs": {
-    "url": "https://github.com/boclips/boclips-player-react/issues"
-  },
   "homepage": "https://github.com/boclips/boclips-player-react#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/boclips/boclips-player-react.git"
   },
+  "bugs": {
+    "url": "https://github.com/boclips/boclips-player-react/issues"
+  },
+  "version": "0.1.0",
+  "main": "dist/boclips-player-react.js",
+  "module": "esm/Player.js",
   "files": [
     "dist",
-    "lib",
-    "esm"
+    "esm",
+    "lib"
   ],
+  "scripts": {
+    "audit": "audit-ci -m",
+    "build": "./scripts/build.sh",
+    "compile": "tsc -p tsconfig.all.json --noEmit",
+    "demo": "./node_modules/.bin/webpack-dev-server --config demo/webpack.config.js",
+    "lint": "tslint -c tslint.json -p .",
+    "lint:fix": "prettier-package-json --write && npm run lint -- --fix",
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "test": "jest --passWithNoTests"
+  },
   "typings": "lib/Player.d.ts",
-  "module": "esm/Player.js",
+  "peerDependencies": {
+    "boclips-player": "^0.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/enzyme": "^3.9.3",
     "@types/jest": "^24.0.13",
     "@types/react": "^16.8.18",
     "audit-ci": "^1.7.0",
+    "boclips-player": "^0.12.0",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^2.0.2",
     "css-loader": "^2.1.1",
@@ -50,6 +56,9 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.6.0",
     "prettier": "^1.17.1",
+    "prettier-package-json": "^2.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.1",
     "tslint": "^5.16.0",
@@ -58,18 +67,9 @@
     "tslint-react": "^4.0.0",
     "typescript": "^3.4.5",
     "typescript-tslint-plugin": "^0.4.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "webpack": "^4.32.1",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1",
     "webpack-merge": "^4.2.1"
-  },
-  "dependencies": {
-    "boclips-player": "^0.11.5"
-  },
-  "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
   }
 }
