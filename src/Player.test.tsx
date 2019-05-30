@@ -1,4 +1,8 @@
-import { BoclipsPlayer, BoclipsPlayerFactory } from 'boclips-player';
+import {
+  BoclipsPlayer,
+  BoclipsPlayerFactory,
+  BoclipsPlayerOptions,
+} from 'boclips-player';
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { Player, Props } from './Player';
@@ -34,7 +38,10 @@ describe('Player', () => {
     expect(divs).toHaveLength(1);
 
     const container: HTMLDivElement = divs.at(0).getDOMNode();
-    expect(BoclipsPlayerFactory.get).toHaveBeenCalledWith(container, expect.anything());
+    expect(BoclipsPlayerFactory.get).toHaveBeenCalledWith(
+      container,
+      expect.anything(),
+    );
   });
 
   it('Passes the BoclipsPlayer up the playerRef callback', () => {
@@ -58,7 +65,7 @@ describe('Player', () => {
   });
 
   it('passes options down into the factory', () => {
-    let options = {
+    let options: Partial<BoclipsPlayerOptions> = {
       player: {
         controls: ['play', 'fullscreen'],
       },
