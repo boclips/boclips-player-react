@@ -15,7 +15,8 @@
     "url": "https://github.com/boclips/boclips-player-react/issues"
   },
   "version": "0.1.0",
-  "main": "dist/boclips-player-react.js",
+  "browser": "dist/boclips-player-react.js",
+  "main": "lib/Player.js",
   "module": "esm/Player.js",
   "files": [
     "dist",
