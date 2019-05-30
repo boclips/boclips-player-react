@@ -34,7 +34,7 @@ describe('Player', () => {
     expect(divs).toHaveLength(1);
 
     const container: HTMLDivElement = divs.at(0).getDOMNode();
-    expect(BoclipsPlayerFactory.get).toHaveBeenCalledWith(container);
+    expect(BoclipsPlayerFactory.get).toHaveBeenCalledWith(container, expect.anything());
   });
 
   it('Passes the BoclipsPlayer up the playerRef callback', () => {
@@ -55,5 +55,20 @@ describe('Player', () => {
       videoUri: 'a/new/path/for/video',
     });
     expect(fakePlayer.loadVideo).toHaveBeenCalledWith('a/new/path/for/video');
+  });
+
+  it('passes options down into the factory', () => {
+    let options = {
+      player: {
+        controls: ['play', 'fullscreen'],
+      },
+    };
+
+    mount(<Player options={options} />);
+
+    expect(BoclipsPlayerFactory.get).toHaveBeenCalledWith(
+      expect.anything(),
+      options,
+    );
   });
 });
