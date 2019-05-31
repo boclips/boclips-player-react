@@ -17,7 +17,7 @@
   "version": "0.1.0",
   "main": "lib/Player.js",
   "module": "esm/Player.js",
-  "browser": "dist/boclips-player-react.js",
+  "browser": "lib/Player.js",
   "files": [
     "dist",
     "esm",
