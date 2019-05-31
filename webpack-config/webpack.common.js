@@ -9,6 +9,9 @@ module.exports = {
   entry: {
     'boclips-player-react': path.resolve(srcPath, 'Player.tsx'),
   },
+  externals:[
+      'boclips-player'
+  ],
   output: {
     filename: '[name].js',
     path: distPath,
