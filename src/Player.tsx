@@ -50,6 +50,7 @@ export class Player extends React.Component<Props> {
   public render() {
     return (
       <div
+        className="boclips-player"
         ref={container => {
           this.container = container;
         }}
