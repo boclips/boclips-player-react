@@ -1,10 +1,6 @@
-import {
-  BoclipsPlayer,
-  BoclipsPlayerFactory,
-  BoclipsPlayerOptions,
-} from 'boclips-player';
+import { Player as PlayerType, PlayerFactory, PlayerOptions } from 'boclips-player';
 import { mount, ReactWrapper } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import { Player, Props } from './Player';
 
 jest.mock('boclips-player');
@@ -12,13 +8,13 @@ jest.mock('boclips-player');
 describe('Player', () => {
   let playerWrapper: ReactWrapper<Props>;
 
-  let fakePlayer: BoclipsPlayer;
+  let fakePlayer: PlayerType;
   let playerRefSpy;
   let handlePauseSpy;
   let handlePlaySpy;
 
   beforeEach(() => {
-    fakePlayer = (BoclipsPlayerFactory.get as any)();
+    fakePlayer = (PlayerFactory.get as any)();
     playerRefSpy = jest.fn();
     handlePauseSpy = jest.fn();
     handlePlaySpy = jest.fn();
@@ -33,18 +29,15 @@ describe('Player', () => {
     );
   });
 
-  it('Instantiates a BoclipsPlayer with the container', () => {
+  it('Instantiates a Player with the container', () => {
     const divs = playerWrapper.find('div');
     expect(divs).toHaveLength(1);
 
     const container: HTMLDivElement = divs.at(0).getDOMNode();
-    expect(BoclipsPlayerFactory.get).toHaveBeenCalledWith(
-      container,
-      expect.anything(),
-    );
+    expect(PlayerFactory.get).toHaveBeenCalledWith(container, expect.anything());
   });
 
-  it('Passes the BoclipsPlayer up the playerRef callback', () => {
+  it('Passes the Player up the playerRef callback', () => {
     expect(playerRefSpy).toHaveBeenCalledWith(fakePlayer);
   });
 
@@ -52,7 +45,7 @@ describe('Player', () => {
     expect(fakePlayer.loadVideo).toHaveBeenCalledWith('path/to/a/video');
   });
 
-  it('Destroys the BoclipsPlayer on unmount', () => {
+  it('Destroys the Player on unmount', () => {
     playerWrapper.unmount();
     expect(fakePlayer.destroy).toHaveBeenCalled();
   });
@@ -65,7 +58,7 @@ describe('Player', () => {
   });
 
   it('passes options down into the factory', () => {
-    let options: Partial<BoclipsPlayerOptions> = {
+    let options: Partial<PlayerOptions> = {
       player: {
         controls: ['play', 'fullscreen'],
       },
@@ -73,7 +66,7 @@ describe('Player', () => {
 
     mount(<Player options={options} />);
 
-    expect(BoclipsPlayerFactory.get).toHaveBeenCalledWith(
+    expect(PlayerFactory.get).toHaveBeenCalledWith(
       expect.anything(),
       options,
     );

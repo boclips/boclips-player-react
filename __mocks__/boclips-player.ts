@@ -1,7 +1,7 @@
-import { BoclipsPlayer as IBoclipsPlayer } from 'boclips-player';
+import { Player as PlayerType } from 'boclips-player';
 
 // noinspection JSUnusedLocalSymbols
-const fakeBoclipsPlayer: IBoclipsPlayer = {
+const fakePlayer: PlayerType = {
   destroy: jest.fn(),
   loadVideo: jest.fn(),
   pause: jest.fn(),
@@ -9,6 +9,6 @@ const fakeBoclipsPlayer: IBoclipsPlayer = {
 };
 
 // noinspection JSUnusedGlobalSymbols
-export const BoclipsPlayerFactory = {
-  get: jest.fn().mockReturnValue(fakeBoclipsPlayer),
+export const PlayerFactory = {
+  get: jest.fn().mockReturnValue(fakePlayer),
 };

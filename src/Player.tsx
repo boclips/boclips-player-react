@@ -1,16 +1,16 @@
 import {
-  BoclipsPlayer,
-  BoclipsPlayerFactory,
-  BoclipsPlayerOptions,
+  Player as PlayerType,
+  PlayerFactory,
+  PlayerOptions,
 } from 'boclips-player';
 import * as React from 'react';
 
 export interface Props {
-  playerRef?: (player: BoclipsPlayer) => void;
+  playerRef?: (player: PlayerType) => void;
   videoUri?: string;
   handlePlay?: () => Promise<void>;
   handlePause?: () => void;
-  options?: Partial<BoclipsPlayerOptions>;
+  options?: Partial<PlayerOptions>;
 }
 
 const noop: (args?: any) => any = () => {};
@@ -18,7 +18,7 @@ const noop: (args?: any) => any = () => {};
 export class Player extends React.Component<Props> {
   private container: HTMLDivElement;
   // @ts-ignore
-  private player: BoclipsPlayer;
+  private player: PlayerType;
 
   public static defaultProps: Partial<Props> = {
     videoUri: null,
@@ -29,7 +29,7 @@ export class Player extends React.Component<Props> {
   };
 
   public componentDidMount() {
-    this.player = BoclipsPlayerFactory.get(this.container, this.props.options);
+    this.player = PlayerFactory.get(this.container, this.props.options);
     if (this.props.videoUri) {
       // noinspection JSIgnoredPromiseFromCall
       this.player.loadVideo(this.props.videoUri);

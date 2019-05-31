@@ -1,6 +1,6 @@
-import { BoclipsPlayer } from 'boclips-player';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { Player as PlayerType } from 'boclips-player';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Player } from '../src/Player';
 
 class ContainerApp extends React.Component<
@@ -31,7 +31,7 @@ class ContainerApp extends React.Component<
 }
 
 class SampleApp extends React.Component<{ heading: string }> {
-  private player: BoclipsPlayer;
+  private player: PlayerType;
 
   public state = {
     videoUri:
