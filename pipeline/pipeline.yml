@@ -90,7 +90,7 @@ resources:
   type: git
   source:
     branch: master
-    private_key: ((boclips-player-react-repo-key))
+    private_key: ((boclips-player-react.repo-key))
     uri: git@github.com:boclips/boclips-player-react.git
 
 - name: version
