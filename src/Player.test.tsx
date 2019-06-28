@@ -59,7 +59,7 @@ describe('Player', () => {
 
   it('passes options down into the factory', () => {
     let options: Partial<PlayerOptions> = {
-      player: {
+      interface: {
         controls: ['play', 'fullscreen'],
       },
     };
