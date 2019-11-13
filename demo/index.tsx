@@ -35,7 +35,7 @@ class SampleApp extends React.Component<{ heading: string }> {
 
   public state = {
     videoUri:
-      'https://teachers.staging-boclips.com/v1/videos/5c542ab85438cdbcb56ddceb',
+      'https://api.staging-boclips.com/v1/videos/5c542ab85438cdbcb56ddceb',
   };
 
   public render() {
@@ -59,19 +59,19 @@ class SampleApp extends React.Component<{ heading: string }> {
   private loadVideoOne = () =>
     this.setState({
       videoUri:
-        'https://teachers.staging-boclips.com/v1/videos/5c542ab85438cdbcb56ddceb',
+        'https://api.staging-boclips.com/v1/videos/5c542ab85438cdbcb56ddceb',
     });
 
   private loadVideoTwo = () =>
     this.setState({
       videoUri:
-        'https://teachers.staging-boclips.com/v1/videos/5c542abf5438cdbcb56df0bf',
+        'https://api.staging-boclips.com/v1/videos/5c542abf5438cdbcb56df0bf',
     });
 
   private loadVideoThree = () =>
     this.setState({
       videoUri:
-        'https://teachers.staging-boclips.com/v1/videos/5c7e6e3c93aafe1355ad8bf5',
+        'https://api.staging-boclips.com/v1/videos/5c7e6e3c93aafe1355ad8bf5',
     });
 
   private getPlayerRef = player => (this.player = player);

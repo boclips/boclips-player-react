@@ -16,7 +16,9 @@ This project is written exclusively in TypeScript. TDD is an absolute must for t
 
 ### Running the demo
 
-_TBC_
+```
+npm run demo 
+```
 
 ### Developing locally
 
