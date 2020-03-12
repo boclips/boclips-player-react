@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2020-03-12
+
+### Security
+- Upgrade `boclips-player`
+- Upgrade dependencies in `package-lock.json` to fix vulnerabilities
+
+
 ## [1.0.1] - 2019-07-15
 
 ### Security
