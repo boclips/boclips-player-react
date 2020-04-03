@@ -1,7 +1,12 @@
-import { Player as PlayerType, PlayerFactory, PlayerOptions } from 'boclips-player';
+import {
+  Player as PlayerType,
+  PlayerFactory,
+  PlayerOptions,
+} from 'boclips-player';
 import { mount, ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import { Player, Props } from './Player';
+import { Props } from './Player';
+import { Player } from './Player';
 
 jest.mock('boclips-player');
 
@@ -10,22 +15,13 @@ describe('Player', () => {
 
   let fakePlayer: PlayerType;
   let playerRefSpy;
-  let handlePauseSpy;
-  let handlePlaySpy;
 
   beforeEach(() => {
     fakePlayer = (PlayerFactory.get as any)();
     playerRefSpy = jest.fn();
-    handlePauseSpy = jest.fn();
-    handlePlaySpy = jest.fn();
 
     playerWrapper = mount(
-      <Player
-        playerRef={playerRefSpy}
-        handlePause={handlePauseSpy}
-        handlePlay={handlePlaySpy}
-        videoUri="path/to/a/video"
-      />,
+      <Player playerRef={playerRefSpy} videoUri="path/to/a/video" />,
     );
   });
 
@@ -34,7 +30,10 @@ describe('Player', () => {
     expect(divs).toHaveLength(1);
 
     const container: HTMLDivElement = divs.at(0).getDOMNode();
-    expect(PlayerFactory.get).toHaveBeenCalledWith(container, expect.anything());
+    expect(PlayerFactory.get).toHaveBeenCalledWith(
+      container,
+      expect.anything(),
+    );
   });
 
   it('Passes the Player up the playerRef callback', () => {
@@ -58,7 +57,7 @@ describe('Player', () => {
   });
 
   it('passes options down into the factory', () => {
-    let options: Partial<PlayerOptions> = {
+    const options: Partial<PlayerOptions> = {
       interface: {
         controls: ['play', 'fullscreen'],
       },
@@ -66,9 +65,6 @@ describe('Player', () => {
 
     mount(<Player options={options} />);
 
-    expect(PlayerFactory.get).toHaveBeenCalledWith(
-      expect.anything(),
-      options,
-    );
+    expect(PlayerFactory.get).toHaveBeenCalledWith(expect.anything(), options);
   });
 });

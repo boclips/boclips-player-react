@@ -3,58 +3,50 @@ import {
   PlayerFactory,
   PlayerOptions,
 } from 'boclips-player';
+
 import * as React from 'react';
 
 export interface Props {
   playerRef?: (player: PlayerType) => void;
   videoUri?: string;
-  handlePlay?: () => Promise<void>;
-  handlePause?: () => void;
   options?: Partial<PlayerOptions>;
 }
 
 const noop: (args?: any) => any = () => {};
-
-export class Player extends React.Component<Props> {
-  private container: HTMLDivElement;
-  // @ts-ignore
-  private player: PlayerType;
-
-  public static defaultProps: Partial<Props> = {
-    videoUri: null,
+export const Player = (props: Props) => {
+  const { playerRef, videoUri, options } = {
     playerRef: noop,
-    handlePlay: noop,
-    handlePause: noop,
+    videoUri: null,
     options: {},
+    ...props,
   };
 
-  public componentDidMount() {
-    this.player = PlayerFactory.get(this.container, this.props.options);
-    if (this.props.videoUri) {
-      // noinspection JSIgnoredPromiseFromCall
-      this.player.loadVideo(this.props.videoUri);
+  let container: HTMLDivElement;
+
+  const player = React.useRef<PlayerType>(null);
+
+  React.useEffect(() => {
+    player.current = PlayerFactory.get(container, options);
+
+    return () => {
+      player.current.destroy();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (videoUri && player.current) {
+      player.current.loadVideo(videoUri);
     }
-    this.props.playerRef(this.player);
-  }
 
-  public componentWillUnmount(): void {
-    this.player.destroy();
-  }
+    playerRef(player.current);
+  }, [videoUri, player, playerRef]);
 
-  public componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.videoUri !== this.props.videoUri) {
-      this.player.loadVideo(this.props.videoUri);
-    }
-  }
-
-  public render() {
-    return (
-      <div
-        className="boclips-player"
-        ref={container => {
-          this.container = container;
-        }}
-      />
-    );
-  }
-}
+  return (
+    <div
+      className="boclips-player"
+      ref={refContainer => {
+        container = refContainer;
+      }}
+    />
+  );
+};

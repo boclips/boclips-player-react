@@ -1,84 +1,73 @@
 import { Player as PlayerType } from 'boclips-player';
-import * as React from 'react';
+import React, { useState } from 'react';
 import * as ReactDOM from 'react-dom';
 import { Player } from '../src/Player';
 
-class ContainerApp extends React.Component<
-  any,
-  { heading: string; showPlayer: boolean }
-> {
-  public state = {
-    heading: 'Hello 123',
-    showPlayer: true,
+export const ContainerApp = () => {
+  const [heading, setHeading] = React.useState('');
+  const [showPlayer, setShowPlayer] = useState(true);
+
+  const changeHeading = () => {
+    setHeading(new Date().toISOString());
+  };
+  const togglePlayer = () => {
+    setShowPlayer(!showPlayer);
   };
 
-  public render() {
-    return (
-      <>
-        <button onClick={this.changeHeading}>Change header</button>
-        <button onClick={this.togglePlayer}>Toggle Player</button>
-        {this.state.showPlayer && <SampleApp heading={this.state.heading} />}
-      </>
-    );
-  }
+  return (
+    <>
+      <button onClick={changeHeading}>Change header</button>
+      <button onClick={togglePlayer}>Toggle Player</button>
+      {showPlayer && <SampleApp heading={heading} />}
+    </>
+  );
+};
 
-  public changeHeading = () => {
-    this.setState({ heading: new Date().toISOString() });
-  };
-  public togglePlayer = () => {
-    this.setState(state => ({ showPlayer: !state.showPlayer }));
-  };
+export interface Props {
+  heading: string;
 }
 
-class SampleApp extends React.Component<{ heading: string }> {
-  private player: PlayerType;
+export const SampleApp = (props: Props) => {
+  let player: PlayerType | null;
+  const [videoUri, setVideoUri] = useState(
+    'https://api.staging-boclips.com/v1/videos/5c542ab85438cdbcb56ddceb',
+  );
 
-  public state = {
-    videoUri:
+  const loadVideoOne = () => {
+    setVideoUri(
       'https://api.staging-boclips.com/v1/videos/5c542ab85438cdbcb56ddceb',
-  };
-
-  public render() {
-    return (
-      <>
-        <h1>{this.props.heading}</h1>
-        <Player playerRef={this.getPlayerRef} videoUri={this.state.videoUri} />
-        <div>
-          <button onClick={this.loadVideoOne}>Load Video One</button>
-          <button onClick={this.loadVideoTwo}>Load Video Two</button>
-          <button onClick={this.loadVideoThree}>Load Video Three</button>
-        </div>
-        <div>
-          <button onClick={this.handlePlay}>Play</button>
-          <button onClick={this.handlePause}>Pause</button>
-        </div>
-      </>
     );
-  }
+  };
+  const loadVideoTwo = () => {
+    setVideoUri(
+      'https://api.staging-boclips.com/v1/videos/5c542abf5438cdbcb56df0bf',
+    );
+  };
+  const loadVideoThree = () => {
+    setVideoUri(
+      'https://api.staging-boclips.com/v1/videos/5c7e6e3c93aafe1355ad8bf5',
+    );
+  };
+  const getPlayerRef = playerRef => (player = playerRef);
 
-  private loadVideoOne = () =>
-    this.setState({
-      videoUri:
-        'https://api.staging-boclips.com/v1/videos/5c542ab85438cdbcb56ddceb',
-    });
+  const handlePlay = () => player.play();
 
-  private loadVideoTwo = () =>
-    this.setState({
-      videoUri:
-        'https://api.staging-boclips.com/v1/videos/5c542abf5438cdbcb56df0bf',
-    });
-
-  private loadVideoThree = () =>
-    this.setState({
-      videoUri:
-        'https://api.staging-boclips.com/v1/videos/5c7e6e3c93aafe1355ad8bf5',
-    });
-
-  private getPlayerRef = player => (this.player = player);
-
-  private handlePlay = () => this.player.play();
-
-  private handlePause = () => this.player.pause();
-}
+  const handlePause = () => player.pause();
+  return (
+    <>
+      <h1>{props.heading}</h1>
+      <Player playerRef={getPlayerRef} videoUri={videoUri} />
+      <div>
+        <button onClick={loadVideoOne}>Load Video One</button>
+        <button onClick={loadVideoTwo}>Load Video Two</button>
+        <button onClick={loadVideoThree}>Load Video Three</button>
+      </div>
+      <div>
+        <button onClick={handlePlay}>Play</button>
+        <button onClick={handlePause}>Pause</button>
+      </div>
+    </>
+  );
+};
 
 ReactDOM.render(<ContainerApp />, document.querySelector('#container'));

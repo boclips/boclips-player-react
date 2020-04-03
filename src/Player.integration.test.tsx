@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
-import { Player } from './Player';
 import React from 'react';
+import { Player } from './Player';
 
 jest.unmock('boclips-player');
 jest.resetModules();
@@ -28,8 +28,8 @@ describe('a Player is actually created', () => {
   it('passes back a player reference', () => {
     expect(actualPlayer).toBeTruthy();
     expect(actualPlayer).toMatchObject({
-        play: expect.any(Function),
-        pause: expect.any(Function)
+      play: expect.any(Function),
+      pause: expect.any(Function),
     });
   });
 
