@@ -21,31 +21,34 @@ export const Player = (props: Props) => {
     ...props,
   };
 
-  let container: HTMLDivElement;
+  const container = React.useRef(null);
 
-  const player = React.useRef<PlayerType>(null);
+  const memoisedOptions = React.useMemo(() => options, []);
+
+  const [player, setPlayer] = React.useState<PlayerType>();
 
   React.useEffect(() => {
-    player.current = PlayerFactory.get(container, options);
+    const localPlayer = PlayerFactory.get(container.current, memoisedOptions);
+    setPlayer(localPlayer);
 
     return () => {
-      player.current.destroy();
+      localPlayer.destroy();
     };
-  }, []);
+  }, [memoisedOptions]);
 
   React.useEffect(() => {
-    if (videoUri && player.current) {
-      player.current.loadVideo(videoUri);
+    if (videoUri && player) {
+      player.loadVideo(videoUri);
     }
 
-    playerRef(player.current);
+    playerRef(player);
   }, [videoUri, player, playerRef]);
 
   return (
     <div
       className="boclips-player"
       ref={refContainer => {
-        container = refContainer;
+        container.current = refContainer;
       }}
     />
   );
