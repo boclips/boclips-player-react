@@ -21,28 +21,29 @@ export const Player = (props: Props) => {
     ...props,
   };
 
-  const container = React.useRef(null);
+  const container = React.useRef<HTMLDivElement>(null);
 
-  const memoisedOptions = React.useMemo(() => options, []);
-
-  const [player, setPlayer] = React.useState<PlayerType>();
+  const player = React.useRef<PlayerType>();
 
   React.useEffect(() => {
-    const localPlayer = PlayerFactory.get(container.current, memoisedOptions);
-    setPlayer(localPlayer);
-
-    return () => {
-      localPlayer.destroy();
-    };
-  }, [memoisedOptions]);
-
-  React.useEffect(() => {
-    if (videoUri && player) {
-      player.loadVideo(videoUri);
+    if (!player.current) {
+      player.current = PlayerFactory.get(container.current, options);
     }
 
-    playerRef(player);
-  }, [videoUri, player, playerRef]);
+    playerRef(player.current);
+
+    return () => {
+      if (player.current) {
+        player.current.destroy();
+      }
+    };
+  }, [options, playerRef]);
+
+  React.useEffect(() => {
+    if (videoUri) {
+      player.current.loadVideo(videoUri);
+    }
+  }, [videoUri]);
 
   return (
     <div
