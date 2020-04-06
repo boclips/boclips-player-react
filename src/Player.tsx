@@ -26,9 +26,7 @@ export const Player = (props: Props) => {
   const player = React.useRef<PlayerType>(null);
 
   React.useEffect(() => {
-    if (!player.current) {
-      player.current = PlayerFactory.get(container.current, options || {});
-    }
+    player.current = PlayerFactory.get(container.current, options || {});
 
     return () => {
       if (player.current) {
