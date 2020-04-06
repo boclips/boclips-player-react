@@ -5,3 +5,4 @@ __mocks__
 jest.config.js
 webpack.config.js
 lib
+esm

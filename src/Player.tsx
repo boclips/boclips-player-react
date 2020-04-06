@@ -17,27 +17,29 @@ export const Player = (props: Props) => {
   const { playerRef, videoUri, options } = {
     playerRef: noop,
     videoUri: null,
-    options: {},
+    options: null,
     ...props,
   };
 
   const container = React.useRef<HTMLDivElement>(null);
 
-  const player = React.useRef<PlayerType>();
+  const player = React.useRef<PlayerType>(null);
 
   React.useEffect(() => {
     if (!player.current) {
-      player.current = PlayerFactory.get(container.current, options);
+      player.current = PlayerFactory.get(container.current, options || {});
     }
-
-    playerRef(player.current);
 
     return () => {
       if (player.current) {
         player.current.destroy();
       }
     };
-  }, [options, playerRef]);
+  }, [options]);
+
+  React.useEffect(() => {
+    playerRef(player.current);
+  }, [playerRef]);
 
   React.useEffect(() => {
     if (videoUri) {
