@@ -23,27 +23,25 @@ export const Player = (props: Props) => {
 
   const container = React.useRef<HTMLDivElement>(null);
 
-  const player = React.useRef<PlayerType>(null);
+  const [player, setPlayer] = React.useState<PlayerType>(null);
+  const stablePlayerRefCallback = React.useCallback(playerRef, []);
 
   React.useEffect(() => {
-    player.current = PlayerFactory.get(container.current, options || {});
+    const newPlayer = PlayerFactory.get(container.current, options || {});
+
+    setPlayer(newPlayer);
+    stablePlayerRefCallback(newPlayer);
 
     return () => {
-      if (player.current) {
-        player.current.destroy();
-      }
+      newPlayer.destroy();
     };
-  }, [options]);
+  }, [options, stablePlayerRefCallback]);
 
   React.useEffect(() => {
-    playerRef(player.current);
-  }, [playerRef]);
-
-  React.useEffect(() => {
-    if (videoUri) {
-      player.current.loadVideo(videoUri);
+    if (videoUri && player) {
+      player.loadVideo(videoUri);
     }
-  }, [videoUri]);
+  }, [videoUri, player]);
 
   return (
     <div
