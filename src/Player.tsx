@@ -33,7 +33,9 @@ export const Player = (props: Props) => {
     stablePlayerRefCallback(newPlayer);
 
     return () => {
-      newPlayer.destroy();
+      if (newPlayer) {
+        newPlayer.destroy();
+      }
     };
   }, [options, stablePlayerRefCallback]);
 
