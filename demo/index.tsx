@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import { Player } from '../src/Player';
 
 export const ContainerApp = () => {
-  const [heading, setHeading] = React.useState('');
+  const [heading, setHeading] = useState('');
   const [showPlayer, setShowPlayer] = useState(true);
 
   const changeHeading = () => {
@@ -28,7 +28,7 @@ export interface Props {
 }
 
 export const SampleApp = (props: Props) => {
-  let player: PlayerType | null;
+  const [player, setPlayer] = useState<PlayerType>(null);
   const [videoUri, setVideoUri] = useState(
     'https://api.staging-boclips.com/v1/videos/5c542ab85438cdbcb56ddceb',
   );
@@ -48,7 +48,9 @@ export const SampleApp = (props: Props) => {
       'https://api.staging-boclips.com/v1/videos/5c7e6e3c93aafe1355ad8bf5',
     );
   };
-  const getPlayerRef = playerRef => (player = playerRef);
+  const getPlayerRef = playerRef => {
+    setPlayer(playerRef);
+  };
 
   const handlePlay = () => player.play();
 
