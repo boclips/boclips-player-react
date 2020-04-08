@@ -23,27 +23,26 @@ export const Player = (props: Props) => {
 
   const container = React.useRef<HTMLDivElement>(null);
 
-  const [player, setPlayer] = React.useState<PlayerType>(null);
-  const stablePlayerRefCallback = React.useCallback(playerRef, []);
+  const player = React.useRef<PlayerType>();
 
   React.useEffect(() => {
-    const newPlayer = PlayerFactory.get(container.current, options || {});
+    player.current = PlayerFactory.get(container.current, options || {});
 
-    setPlayer(newPlayer);
-    stablePlayerRefCallback(newPlayer);
+    playerRef(player.current);
 
     return () => {
-      if (newPlayer) {
-        newPlayer.destroy();
+      if (player.current) {
+        player.current.destroy();
       }
     };
-  }, [options, stablePlayerRefCallback]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
-    if (videoUri && player) {
-      player.loadVideo(videoUri);
+    if (videoUri) {
+      player.current.loadVideo(videoUri);
     }
-  }, [videoUri, player]);
+  }, [videoUri]);
 
   return (
     <div
