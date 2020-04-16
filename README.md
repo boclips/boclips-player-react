@@ -12,7 +12,7 @@ Please refer to the [hosted docs](https://docs.boclips.com) for further usage in
 
 ## Development
 
-This project is written exclusively in TypeScript. TDD is an absolute must for this business critical library.
+This project is written exclusively in TypeScript.
 
 ### Running the demo
 
