@@ -35,7 +35,7 @@
   },
   "typings": "lib/Player.d.ts",
   "peerDependencies": {
-    "boclips-player": "^3.0.1",
+    "boclips-player": "^3.0.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
@@ -48,7 +48,7 @@
     "@typescript-eslint/eslint-plugin-tslint": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "audit-ci": "^1.7.0",
-    "boclips-player": "^3.0.1",
+    "boclips-player": "^3.0.2",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^2.0.2",
     "css-loader": "^2.1.1",
