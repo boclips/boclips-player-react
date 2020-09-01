@@ -19,25 +19,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.3] - 2020-04-30
 
-## Changed
+### Changed
 
 - Update boclips-player version to `3.0.2`
 
 ## [1.1.2] - 2020-04-30
 
-## Changed
+### Changed
 
 - Update boclips-player version to `3.0.1`
 
 ## [1.1.1] - 2020-04-30
 
-## Fixed
+### Fixed
 
 - No change: required for release process fix
 
 ## [1.1.0] - 2020-04-09
 
-## Fixed
+### Fixed
 
 - Refactored the player code to use hooks
 
