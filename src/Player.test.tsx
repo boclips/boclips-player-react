@@ -7,6 +7,7 @@ import { mount, ReactWrapper } from 'enzyme';
 import * as React from 'react';
 import { Props } from './Player';
 import { Player } from './Player';
+import { PlaybackSegment } from 'boclips-player/lib/MediaPlayer/MediaPlayer';
 
 jest.mock('boclips-player');
 
@@ -41,7 +42,7 @@ describe('Player', () => {
   });
 
   it('does initially load the video from videoUri props', () => {
-    expect(fakePlayer.loadVideo).toHaveBeenCalledWith('path/to/a/video');
+    expect(fakePlayer.loadVideo).toHaveBeenCalledWith('path/to/a/video', undefined);
   });
 
   it('Destroys the Player on unmount', () => {
@@ -53,7 +54,7 @@ describe('Player', () => {
     playerWrapper.setProps({
       videoUri: 'a/new/path/for/video',
     });
-    expect(fakePlayer.loadVideo).toHaveBeenCalledWith('a/new/path/for/video');
+    expect(fakePlayer.loadVideo).toHaveBeenCalledWith('a/new/path/for/video', undefined);
   });
 
   it('passes options down into the factory', () => {
@@ -66,5 +67,31 @@ describe('Player', () => {
     mount(<Player options={options} />);
 
     expect(PlayerFactory.get).toHaveBeenCalledWith(expect.anything(), options);
+  });
+});
+
+describe(`segmenting`, () => {
+  let fakePlayer;
+  let playerRefSpy;
+  const segment: PlaybackSegment = { start: 60, end: 120 };
+
+  beforeEach(() => {
+    fakePlayer = (PlayerFactory.get as any)();
+    playerRefSpy = jest.fn();
+
+    mount(
+      <Player
+        playerRef={playerRefSpy}
+        videoUri="path/to/a/video"
+        segment={segment}
+      />,
+    );
+  });
+
+  it(`loads the video with the correct segment value`, () => {
+    expect(fakePlayer.loadVideo).toHaveBeenCalledWith(
+      'path/to/a/video',
+      segment,
+    );
   });
 });

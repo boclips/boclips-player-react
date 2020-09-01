@@ -5,11 +5,13 @@ import {
 } from 'boclips-player';
 
 import * as React from 'react';
+import { PlaybackSegment } from 'boclips-player/lib/MediaPlayer/MediaPlayer';
 
 export interface Props {
   playerRef?: (player: PlayerType) => void;
   videoUri?: string;
   options?: Partial<PlayerOptions>;
+  segment?: PlaybackSegment;
 }
 
 const noop: (args?: any) => any = () => {};
@@ -40,7 +42,7 @@ export const Player = (props: Props) => {
 
   React.useEffect(() => {
     if (videoUri) {
-      player.current.loadVideo(videoUri);
+      player.current.loadVideo(videoUri, props.segment);
     }
   }, [videoUri]);
 
