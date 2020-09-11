@@ -42,7 +42,10 @@ describe('Player', () => {
   });
 
   it('does initially load the video from videoUri props', () => {
-    expect(fakePlayer.loadVideo).toHaveBeenCalledWith('path/to/a/video', undefined);
+    expect(fakePlayer.loadVideo).toHaveBeenCalledWith(
+      'path/to/a/video',
+      undefined,
+    );
   });
 
   it('Destroys the Player on unmount', () => {
@@ -54,7 +57,10 @@ describe('Player', () => {
     playerWrapper.setProps({
       videoUri: 'a/new/path/for/video',
     });
-    expect(fakePlayer.loadVideo).toHaveBeenCalledWith('a/new/path/for/video', undefined);
+    expect(fakePlayer.loadVideo).toHaveBeenCalledWith(
+      'a/new/path/for/video',
+      undefined,
+    );
   });
 
   it('passes options down into the factory', () => {

@@ -44,6 +44,7 @@ export const Player = (props: Props) => {
     if (videoUri) {
       player.current.loadVideo(videoUri, props.segment);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoUri]);
 
   return (

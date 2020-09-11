@@ -35,7 +35,7 @@
   },
   "typings": "lib/Player.d.ts",
   "peerDependencies": {
-    "boclips-player": "6.0.3-dev.3",
+    "boclips-player": "^3.0.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
