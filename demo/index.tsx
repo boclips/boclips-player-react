@@ -48,7 +48,7 @@ export const SampleApp = (props: Props) => {
       'https://api.staging-boclips.com/v1/videos/5c7e6e3c93aafe1355ad8bf5',
     );
   };
-  const getPlayerRef = playerRef => {
+  const getPlayerRef = (playerRef) => {
     setPlayer(playerRef);
   };
 

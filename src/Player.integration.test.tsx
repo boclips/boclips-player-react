@@ -15,7 +15,7 @@ describe('a Player is actually created', () => {
 
     component = mount(
       <Player
-        playerRef={player => {
+        playerRef={(player) => {
           actualPlayer = player;
         }}
       />,

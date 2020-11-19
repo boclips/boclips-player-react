@@ -10,6 +10,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
     'prettier/react',
+    'prettier'
   ],
   rules: {
     '@typescript-eslint/no-empty-function': 'off',

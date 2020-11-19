@@ -12,11 +12,12 @@ export interface Props {
   videoUri?: string;
   options?: Partial<PlayerOptions>;
   segment?: PlaybackSegment;
+  borderRadius?: string;
 }
 
 const noop: (args?: any) => any = () => {};
 export const Player = (props: Props) => {
-  const { playerRef, videoUri, options } = {
+  const { playerRef, videoUri, options, borderRadius } = {
     playerRef: noop,
     videoUri: null,
     options: null,
@@ -50,7 +51,8 @@ export const Player = (props: Props) => {
   return (
     <div
       className="boclips-player"
-      ref={refContainer => {
+      style={{ borderRadius }}
+      ref={(refContainer) => {
         container.current = refContainer;
       }}
     />
