@@ -9,13 +9,11 @@ module.exports = {
   entry: {
     'boclips-player-react': path.resolve(srcPath, 'Player.tsx'),
   },
-  externals:[
-      'boclips-player'
-  ],
+  externals: ['boclips-player'],
   output: {
     filename: '[name].js',
     path: distPath,
-    publicPath: '/'
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -40,7 +38,26 @@ module.exports = {
           {
             loader: 'less-loader',
             options: {
-              javascriptEnabled: true,
+              lessOptions: { javascriptEnabled: true },
+            },
+          },
+        ],
+      },
+      {
+        test: /.svg$/i,
+        exclude: /node_modules/,
+        oneOf: [
+          {
+            loader: ["file-loader", "image-webpack-loader"],
+            resourceQuery: /inline/,
+          },
+          {
+            loader: "svg-react-loader",
+            options: {
+              jsx: true,
+              props: {
+                role: "img",
+              },
             },
           },
         ],

@@ -27,7 +27,7 @@
     "audit": "audit-ci -m",
     "build": "./scripts/build.sh",
     "compile": "tsc -p tsconfig.all.json --noEmit",
-    "demo": "./node_modules/.bin/webpack-dev-server --config demo/webpack.config.js",
+    "demo": "./node_modules/.bin/webpack serve --config demo/webpack.config.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "prettier-package-json --write && npm run lint -- --fix",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
@@ -80,5 +80,8 @@
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.3.0"
+  },
+  "dependencies": {
+    "svg-react-loader": "^0.4.6"
   }
 }
