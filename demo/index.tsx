@@ -40,7 +40,7 @@ export const SampleApp = (props: Props) => {
   };
   const loadVideoTwo = () => {
     setVideoUri(
-      'https://api.staging-boclips.com/v1/videos/5df92c1b67f5a65f1e5e64bb',
+      'https://api.staging-boclips.com/v1/videos/5d2856987e173c570e69c523',
     );
   };
   const loadVideoThree = () => {
@@ -65,8 +65,8 @@ export const SampleApp = (props: Props) => {
       <h1>{props.heading}</h1>
       <Player playerRef={getPlayerRef} videoUri={videoUri} options={options} />
       <div>
-        <button onClick={loadVideoOne}>Load Video One</button>
-        <button onClick={loadVideoTwo}>Load Video Two</button>
+        <button onClick={loadVideoOne}>Load Video One (Kaltura)</button>
+        <button onClick={loadVideoTwo}>Load Video Two (YT)</button>
         <button onClick={loadVideoThree}>Load Video Three</button>
       </div>
       <div>
