@@ -48,10 +48,6 @@ module.exports = {
         exclude: /node_modules/,
         oneOf: [
           {
-            loader: "image-webpack-loader",
-            resourceQuery: /inline/,
-          },
-          {
             loader: "svg-react-loader",
             options: {
               jsx: true,
