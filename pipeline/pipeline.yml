@@ -101,7 +101,8 @@ resources:
     uri: git@github.com:boclips/versions.git
     branch: master
     file: boclips-player-react
-    private_key: ((versions.repo-key))
+    private_key: |
+      ((versions.repo-key))
 
 - name: npm-registry
   type: npm-resource
