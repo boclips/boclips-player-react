@@ -6,7 +6,8 @@ const fakePlayer: PlayerType = {
   loadVideo: jest.fn(),
   pause: jest.fn(),
   play: jest.fn(),
-  onEnd: jest.fn()
+  onEnd: jest.fn(),
+  onError: jest.fn()
 };
 
 // noinspection JSUnusedGlobalSymbols
