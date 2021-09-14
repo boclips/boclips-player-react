@@ -42,7 +42,7 @@
   "devDependencies": {
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "@types/chai": "^4.2.16",
-    "@types/enzyme": "^3.10.8",
+    "@types/enzyme": "^3.10.9",
     "@types/jest": "^27.0.1",
     "@types/react": "^17.0.14",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
