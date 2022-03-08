@@ -15,7 +15,7 @@
     "url": "https://github.com/boclips/boclips-player-react/issues"
   },
   "version": "0.1.0",
-  "main": "lib/Player.js",
+  "main": "dist/boclips-player-react.js",
   "module": "esm/Player.js",
   "browser": "lib/Player.js",
   "files": [
@@ -34,10 +34,12 @@
   },
   "typings": "lib/Player.d.ts",
   "dependencies": {
+    "crypto": "^1.0.1",
+    "querystring-es3": "^0.2.1",
     "svg-react-loader": "^0.4.6"
   },
   "peerDependencies": {
-    "boclips-player": "^6.10.0",
+    "boclips-player": "^6.10.7-dev.13",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -51,7 +53,7 @@
     "@typescript-eslint/parser": "^5.1.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "audit-ci": "^4.1.0",
-    "boclips-player": "^6.10.6",
+    "boclips-player": "^6.10.7-dev.14",
     "chai": "^4.3.4",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^6.6.0",

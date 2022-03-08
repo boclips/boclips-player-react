@@ -16,6 +16,8 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
+    fallback: { querystring: require.resolve('querystring-es3') },
+
     extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
