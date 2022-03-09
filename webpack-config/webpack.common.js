@@ -6,15 +6,16 @@ const distPath = path.resolve(__dirname, '../dist');
 
 module.exports = {
   entry: path.resolve(srcPath, 'Player.tsx'),
-  externals: ['boclips-player'],
+  externals: ['boclips-player', 'react', 'react-dom'],
   output: {
     filename: 'index.js',
     path: distPath,
     publicPath: '/',
+    module: false,
+    libraryTarget: 'umd',
   },
   resolve: {
     fallback: { querystring: require.resolve('querystring-es3') },
-
     extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
