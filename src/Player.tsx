@@ -1,11 +1,11 @@
+import * as React from 'react';
+import { PlaybackSegment } from 'boclips-player/dist/MediaPlayer/MediaPlayer';
 import {
   Player as PlayerType,
   PlayerFactory,
   PlayerOptions,
 } from 'boclips-player';
-
-import * as React from 'react';
-import { PlaybackSegment } from 'boclips-player/lib/MediaPlayer/MediaPlayer';
+import 'boclips-player/dist/main.css';
 
 export interface Props {
   playerRef?: (player: PlayerType) => void;

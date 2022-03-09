@@ -13,7 +13,8 @@
     "types": ["react", "jest"],
     "declaration": true,
     "target": "es5",
-    "outDir": "lib/"
+    "outDir": "dist",
+    "emitDeclarationOnly": true
   },
   "exclude": [
     "src/test-support",

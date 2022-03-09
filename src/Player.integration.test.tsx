@@ -23,8 +23,6 @@ describe('a Player is actually created', () => {
   });
 
   it('passes back a player reference', () => {
-    console.log(actualPlayer);
-
     expect(actualPlayer).toBeTruthy();
     expect(actualPlayer).toMatchObject({
       play: expect.any(Function),

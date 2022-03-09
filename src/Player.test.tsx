@@ -7,7 +7,7 @@ import { mount, ReactWrapper } from 'enzyme';
 import * as React from 'react';
 import { Props } from './Player';
 import { Player } from './Player';
-import { PlaybackSegment } from 'boclips-player/lib/MediaPlayer/MediaPlayer';
+import { PlaybackSegment } from 'boclips-player/dist/MediaPlayer/MediaPlayer';
 
 jest.mock('boclips-player');
 
