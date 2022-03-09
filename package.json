@@ -82,5 +82,8 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
     "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "boclips-js-security": "^8.0.0"
   }
 }
