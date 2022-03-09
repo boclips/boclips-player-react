@@ -1,5 +1,4 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const srcPath = path.resolve(__dirname, '../src');
@@ -11,7 +10,7 @@ module.exports = {
   },
   externals: ['boclips-player'],
   output: {
-    filename: '[name].js',
+    filename: 'index.js',
     path: distPath,
     publicPath: '/',
   },
@@ -35,7 +34,7 @@ module.exports = {
       {
         test: /\.(less|css)$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           {
             loader: 'less-loader',
@@ -63,10 +62,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      chunkFilename: '[id].css',
-      filename: '[name].css',
-    }),
+    new CleanWebpackPlugin()
   ],
 };

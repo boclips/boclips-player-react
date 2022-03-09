@@ -15,17 +15,15 @@
     "url": "https://github.com/boclips/boclips-player-react/issues"
   },
   "version": "0.1.0",
-  "main": "dist/boclips-player-react.js",
-  "module": "esm/Player.js",
+  "main": "dist/index.js",
   "browser": "lib/Player.js",
   "files": [
     "dist",
-    "esm",
     "lib"
   ],
   "scripts": {
     "audit": "audit-ci -m",
-    "build": "./scripts/build.sh",
+    "build": "NODE_ENV=production webpack --config webpack-config/webpack.prod.js && tsc --build --force ./tsconfig.json",
     "compile": "tsc -p tsconfig.all.json --noEmit",
     "demo": "./node_modules/.bin/webpack serve --config demo/webpack.config.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -33,17 +31,16 @@
     "test": "jest --passWithNoTests"
   },
   "typings": "lib/Player.d.ts",
-  "dependencies": {
-    "crypto": "^1.0.1",
-    "querystring-es3": "^0.2.1",
-    "svg-react-loader": "^0.4.6"
-  },
   "peerDependencies": {
     "boclips-player": "^6.10.7-dev.13",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "crypto": "^1.0.1",
+    "querystring-es3": "^0.2.1",
+    "style-loader": "^3.3.1",
+    "svg-react-loader": "^0.4.6",
     "@types/chai": "^4.2.16",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^27.0.2",
