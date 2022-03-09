@@ -5,9 +5,7 @@ const srcPath = path.resolve(__dirname, '../src');
 const distPath = path.resolve(__dirname, '../dist');
 
 module.exports = {
-  entry: {
-    'boclips-player-react': path.resolve(srcPath, 'Player.tsx'),
-  },
+  entry: path.resolve(srcPath, 'Player.tsx'),
   externals: ['boclips-player'],
   output: {
     filename: 'index.js',
