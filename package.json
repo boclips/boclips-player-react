@@ -16,7 +16,7 @@
   },
   "version": "0.1.0",
   "main": "dist/index.js",
-  "browser": "lib/Player.js",
+  "types": "lib/Player.d.ts",
   "files": [
     "dist",
     "lib"
