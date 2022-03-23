@@ -6,6 +6,7 @@ groups:
   - pre-release
   - major
   - minor
+  - patch
   - release
 - name: develop
   jobs:
@@ -15,6 +16,7 @@ groups:
   jobs:
     - major
     - minor
+    - patch
     - release
 
 jobs:
@@ -57,6 +59,12 @@ jobs:
   - put: version
     params:
       bump: minor
+
+- name: patch
+  plan:
+  - put: version
+    params:
+      bump: patch
 
 - name: release
   plan:
