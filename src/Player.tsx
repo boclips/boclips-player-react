@@ -4,7 +4,7 @@ import {
   Player as PlayerType,
   PlayerFactory,
   PlayerOptions,
-} from 'boclips-player';
+} from 'boclips-player-annoto';
 import 'boclips-player/dist/main.css';
 
 export interface Props {
@@ -13,6 +13,9 @@ export interface Props {
   options?: Partial<PlayerOptions>;
   segment?: PlaybackSegment;
   borderRadius?: string;
+  annotoClientId?: string;
+  annotoSecret?: string;
+  user?: 'user' | 'super-mod';
 }
 
 const noop: (args?: any) => any = () => {};
@@ -42,8 +45,14 @@ export const Player = (props: Props) => {
   }, []);
 
   React.useEffect(() => {
-    if (videoUri) {
-      player.current.loadVideo(videoUri, props.segment);
+    if (videoUri && props.annotoClientId) {
+      player.current.loadVideo(
+        videoUri,
+        props.segment,
+        props.annotoClientId,
+        props.annotoSecret,
+        props.user,
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoUri]);
