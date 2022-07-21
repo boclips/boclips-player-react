@@ -1,4 +1,4 @@
-import { Player as PlayerType } from 'boclips-player-annoto';
+import { Player as PlayerType } from 'boclips-player';
 import React, { useState } from 'react';
 import * as ReactDOM from 'react-dom';
 import { Player } from '../src/Player';
@@ -39,12 +39,6 @@ export interface Props {
   heading: string;
 }
 
-const clientId =
-  'eyJhbGciOiJIUzI1NiJ9.Y2RjMzUyZDAtMzZjZS00ZDIyLWE1OTctOTBiZWYyNjM1ODI2.DYvaH3PFfHI_UxX8v295ObMAypgptva5MMvEoI6MV2E';
-const user = 'super-mod';
-const clientSecret =
-  '72d01739ccf435f51b9a4e36bbb792b74015024b939cedc68471b499a1360d0a';
-
 export const SampleApp = (props: Props) => {
   const [player, setPlayer] = useState<PlayerType>(null);
   const [videoUri, setVideoUri] = useState(
@@ -82,14 +76,7 @@ export const SampleApp = (props: Props) => {
   return (
     <>
       <h1>{props.heading}</h1>
-      <Player
-        playerRef={getPlayerRef}
-        videoUri={videoUri}
-        options={options}
-        annotoClientId={clientId}
-        annotoSecret={clientSecret}
-        user={user}
-      />
+      <Player playerRef={getPlayerRef} videoUri={videoUri} options={options} />
       <div>
         <button onClick={loadVideoOne}>Load Video One (Kaltura)</button>
         <button onClick={loadVideoTwo}>Load Video Two (YT)</button>
