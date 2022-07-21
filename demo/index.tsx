@@ -87,7 +87,7 @@ export const SampleApp = (props: Props) => {
         options={options}
         annotoClientId={clientId}
         annotoSecret={clientSecret}
-        user="super-mod"
+        user="user"
       />
       <div>
         <button onClick={loadVideoOne}>Load Video One (Kaltura)</button>
