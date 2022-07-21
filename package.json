@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/boclips/boclips-player-react/issues"
   },
-  "version": "0.1.1-2",
+  "version": "0.1.1-1",
   "main": "dist/index.js",
   "types": "lib/Player.d.ts",
   "files": [
