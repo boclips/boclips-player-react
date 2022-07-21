@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.2] - 2022-07-21
+
+- Bump boclips-player and bo-js-security to latest
+
 ## [2.9.1] - 2022-05-11
 
 - Bump boclips-player to latest
