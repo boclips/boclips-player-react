@@ -1,6 +1,6 @@
 import { Player as PlayerType } from 'boclips-player';
 import React, { useState } from 'react';
-import { createRoot } from 'react-dom/client';
+import * as ReactDOM from 'react-dom';
 import { Player } from '../src/Player';
 import BoclipsSecurity from 'boclips-js-security';
 
@@ -12,7 +12,7 @@ const boclipsSecurity = BoclipsSecurity.createInstance({
   realm: 'boclips',
   clientId: 'teachers',
   requireLoginPage: true,
-  authEndpoint: 'https://login.staging-boclips.com',
+  authEndpoint: 'https://login.staging-boclips.com/auth',
 });
 
 export const ContainerApp = () => {
@@ -91,7 +91,5 @@ export const SampleApp = (props: Props) => {
 };
 
 const renderPlayer = () => {
-  const container = document.getElementById('container');
-  const root = createRoot(container);
-  root.render(<ContainerApp />);
+  ReactDOM.render(<ContainerApp />, document.querySelector('#container'));
 };
