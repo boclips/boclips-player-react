@@ -1,6 +1,6 @@
 import { Player as PlayerType } from 'boclips-player';
 import React, { useState } from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Player } from '../src/Player';
 import BoclipsSecurity from 'boclips-js-security';
 
@@ -91,5 +91,7 @@ export const SampleApp = (props: Props) => {
 };
 
 const renderPlayer = () => {
-  ReactDOM.render(<ContainerApp />, document.querySelector('#container'));
+  const container = document.getElementById('container');
+  const root = createRoot(container);
+  root.render(<ContainerApp />);
 };
