@@ -1,6 +1,6 @@
 import React from 'react';
 import { Player } from './Player';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 jest.unmock('boclips-player');
 jest.resetModules();
@@ -13,7 +13,7 @@ describe('a Player is actually created', () => {
     const container = document.createElement('div');
     document.body.appendChild(container);
 
-    component = mount(
+    component = render(
       <Player
         playerRef={(player) => {
           actualPlayer = player;
@@ -31,10 +31,10 @@ describe('a Player is actually created', () => {
   });
 
   it('loads a video element in the DOM', () => {
-    const domNode = component.getDOMNode();
+    const player = component.baseElement.querySelector(
+      `[data-qa="boclips-player"]`,
+    );
 
-    const videoElement = domNode.querySelector('[data-qa="boclips-player"]');
-
-    expect(videoElement).toBeTruthy();
+    expect(player).toBeTruthy();
   });
 });

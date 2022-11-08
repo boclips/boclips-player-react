@@ -3,16 +3,15 @@ import {
   PlayerFactory,
   PlayerOptions,
 } from 'boclips-player';
-import { mount, ReactWrapper } from 'enzyme';
 import * as React from 'react';
-import { Props } from './Player';
 import { Player } from './Player';
 import { PlaybackSegment } from 'boclips-player/dist/MediaPlayer/MediaPlayer';
+import { render } from '@testing-library/react';
 
 jest.mock('boclips-player');
 
 describe('Player', () => {
-  let playerWrapper: ReactWrapper<Props>;
+  let playerWrapper;
 
   let fakePlayer: PlayerType;
   let playerRefSpy;
@@ -21,16 +20,17 @@ describe('Player', () => {
     fakePlayer = (PlayerFactory.get as any)();
     playerRefSpy = jest.fn();
 
-    playerWrapper = mount(
+    playerWrapper = render(
       <Player playerRef={playerRefSpy} videoUri="path/to/a/video" />,
     );
   });
 
   it('Instantiates a Player with the container', () => {
-    const divs = playerWrapper.find('div');
-    expect(divs).toHaveLength(1);
+    const divs = playerWrapper.baseElement.querySelectorAll('div');
+    expect(divs).toHaveLength(2);
 
-    const container: HTMLDivElement = divs.at(0).getDOMNode();
+    const container: HTMLDivElement = divs[1];
+
     expect(PlayerFactory.get).toHaveBeenCalledWith(
       container,
       expect.anything(),
@@ -53,16 +53,6 @@ describe('Player', () => {
     expect(fakePlayer.destroy).toHaveBeenCalled();
   });
 
-  it('does load a new video when the videoUri prop changes', () => {
-    playerWrapper.setProps({
-      videoUri: 'a/new/path/for/video',
-    });
-    expect(fakePlayer.loadVideo).toHaveBeenCalledWith(
-      'a/new/path/for/video',
-      undefined,
-    );
-  });
-
   it('passes options down into the factory', () => {
     const options: Partial<PlayerOptions> = {
       interface: {
@@ -70,7 +60,7 @@ describe('Player', () => {
       },
     };
 
-    mount(<Player options={options} />);
+    render(<Player options={options} />);
 
     expect(PlayerFactory.get).toHaveBeenCalledWith(expect.anything(), options);
   });
@@ -85,7 +75,7 @@ describe(`segmenting`, () => {
     fakePlayer = (PlayerFactory.get as any)();
     playerRefSpy = jest.fn();
 
-    mount(
+    render(
       <Player
         playerRef={playerRefSpy}
         videoUri="path/to/a/video"
