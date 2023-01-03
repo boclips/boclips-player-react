@@ -7,7 +7,8 @@ const fakePlayer: PlayerType = {
   pause: jest.fn(),
   play: jest.fn(),
   onEnd: jest.fn(),
-  onError: jest.fn()
+  onError: jest.fn(),
+  onReady: jest.fn(),
 };
 
 // noinspection JSUnusedGlobalSymbols
