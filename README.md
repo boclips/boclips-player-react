@@ -35,6 +35,11 @@ npm run test
 npm run build
 ```
 
+## Updates
+
+[04-Jan-2023]: The default branch is moved from `master` to `main`. You will need to update your local copies and forks
+to modify the default branch. 
+
 ## Contributing
 
 _TBC_
