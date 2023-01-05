@@ -44,16 +44,16 @@ module.exports = {
         ],
       },
       {
-        test: /.svg$/i,
+        test: /\.svg$/i,
         exclude: /node_modules/,
-        oneOf: [
+        issuer: /\.[jt]sx?$/,
+        use: [
           {
-            loader: "svg-react-loader",
+            loader: '@svgr/webpack',
             options: {
-              jsx: true,
-              props: {
-                role: "img",
-              },
+              prettier: false,
+              svgo: false,
+              svgProps: { role: 'img' },
             },
           },
         ],
