@@ -10,6 +10,7 @@ import 'vidstack/styles/community-skin/video.css';
 import { ApiBoclipsClient } from 'boclips-api-client';
 import axios from 'axios';
 import { MediaPlayerElement, MediaSrc } from 'vidstack';
+import { Video } from 'boclips-api-client/dist/sub-clients/videos/model/Video';
 
 interface Props {
   videoUrl: string;
@@ -19,48 +20,53 @@ interface Props {
 export const Player = ({ videoUrl, tokenFactory }: Props): ReactElement => {
   const player = useRef<MediaPlayerElement>(null);
 
-  // player?.current?.addEventListener('on-sources-change', async (event) => {
-  //   console.log('load-start');
-  //   const apiClient = await ApiBoclipsClient.create(axios, apiPrefix);
-  //   // original media event (`loadedmetadata`) is still available.
-  //   const video = await apiClient.videos.get(
-  //     videoUrl.substring(videoUrl.indexOf('/v1') + 1),
-  //   );
-  //   const url = video.playback.links
-  //     .hlsStream!.getOriginalLink()
-  //     .replace('.mp4', '.m3u8');
-  //   player?.current.setAttribute('src', url);
-  //   player?.current.setAttribute('title', video.title);
-  //   player?.current!.startLoading();
-  // });
   const [src, setSrc] = useState<string>('');
   const apiClient = useRef<ApiBoclipsClient>();
-  console.log('hi');
+  const video = useRef<Video>();
+
   useEffect(() => {
-    console.log('load-start');
     async function getMediaStream() {
       apiClient.current = await ApiBoclipsClient.create(
         axios,
         videoUrl.substring(0, videoUrl.indexOf('/v1')),
       );
-      // original media event (`loadedmetadata`) is still available.
       const id = videoUrl.substring(videoUrl.indexOf('/v1/videos/') + 11);
       console.log(id);
-      const video = await apiClient.current.videos.get(id);
-      const url = video.playback.links
+      video.current = await apiClient.current.videos.get(id);
+      const url = video.current.playback.links
         .hlsStream!.getOriginalLink()
         .replace('.mp4', '.m3u8');
       player?.current.setAttribute('src', url);
-      player?.current.setAttribute('title', video.title);
+      player?.current.setAttribute('title', video.current.title);
       player?.current.setAttribute(
         'poster',
-        video.playback.links.thumbnail.getOriginalLink(),
+        video.current.playback.links.thumbnail.getOriginalLink(),
       );
       setSrc(url);
+      setupEvents();
     }
 
     getMediaStream();
   }, [videoUrl]);
+  const setupEvents = () => {
+    player.current.addEventListener('play', () => {
+      apiClient.current?.events
+        .trackVideoInteraction(
+          video.current!,
+          'VIDEO_PLAYBACK_STARTED', //TODO(AG) - Check the real event names
+        )
+        .then((_e) => console.log(`play event sent `));
+    });
+
+    player.current.addEventListener('pause', () => {
+      apiClient.current?.events
+        .trackVideoInteraction(
+          video.current!,
+          'VIDEO_PLAYBACK_PAUSED', //TODO - Check the real event names
+        )
+        .then((_e) => console.log(`pause event sent`));
+    });
+  };
 
   return (
     <MediaPlayer src={src} preferNativeHLS={true} crossorigin="" ref={player}>
