@@ -25,6 +25,7 @@
     "audit": "audit-ci -m",
     "build": "NODE_ENV=production webpack --config webpack-config/webpack.prod.js && tsc --build --force ./tsconfig.json",
     "demo": "./node_modules/.bin/webpack serve --config demo/webpack.config.js",
+    "new-demo": "./node_modules/.bin/webpack serve --config new-demo/webpack.config.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "prettier-package-json --write && npm run lint -- --fix",
     "test": "jest --passWithNoTests"
@@ -42,7 +43,7 @@
     "@types/chai": "^4.2.16",
     "@types/jest": "^27.4.1",
     "@types/node": "^18.11.9",
-    "@types/react": "^17.0.14",
+    "@types/react": "^18.2.0",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/eslint-plugin-tslint": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
@@ -81,5 +82,11 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
     "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "@vidstack/react": "^0.6.13",
+    "boclips-api-client": "^64.0.2",
+    "urijs": "^1.19.11",
+    "vidstack": "^0.6.13"
   }
 }
