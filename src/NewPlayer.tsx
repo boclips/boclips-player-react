@@ -12,14 +12,15 @@ import 'vidstack/styles/defaults.css';
 import 'vidstack/styles/community-skin/video.css';
 import { ApiBoclipsClient } from 'boclips-api-client';
 import axios from 'axios';
-import { MediaPlayerElement, MediaSrc } from 'vidstack';
+import { MediaPlayerElement } from 'vidstack';
 import { Video } from 'boclips-api-client/dist/sub-clients/videos/model/Video';
 import { setUpEvents } from './Events';
+import { PlaybackSegment } from 'boclips-player/dist/MediaPlayer/MediaPlayer';
 
 interface Props {
   videoUrl: string;
-  tokenFactory: () => Promise<string>;
   userIdFactory: () => Promise<string>;
+  segment?: PlaybackSegment;
 }
 
 function getBaseUrl(videoUrl: string) {
@@ -36,7 +37,11 @@ function getPlaybackUrl(video: React.MutableRefObject<Video | undefined>) {
     .replace('.mp4', '.m3u8');
 }
 
-export const Player = ({ videoUrl, userIdFactory }: Props): ReactElement => {
+export const Player = ({
+  videoUrl,
+  userIdFactory,
+  segment,
+}: Props): ReactElement => {
   const player = useRef<MediaPlayerElement>(null);
 
   const [src, setSrc] = useState<string>('');
@@ -64,8 +69,9 @@ export const Player = ({ videoUrl, userIdFactory }: Props): ReactElement => {
         video.current.playback.links.thumbnail.getOriginalLink(),
       );
 
+
       setSrc(url);
-      setUpEvents(player.current, apiClient.current, video.current);
+      setUpEvents(player.current, apiClient.current, video.current, segment);
     }
 
     getMediaStream();

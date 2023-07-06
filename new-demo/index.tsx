@@ -1,7 +1,5 @@
-import { Player as PlayerType } from 'boclips-player';
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Player } from '../src/Player';
 import BoclipsSecurity from 'boclips-js-security';
 import NewPlayer from '../src/NewPlayer';
 
@@ -66,7 +64,7 @@ export const SampleApp = (props: Props) => {
       <h1>{props.heading}</h1>
       <NewPlayer
         videoUrl={videoUri}
-        tokenFactory={boclipsSecurity.getTokenFactory(5)}
+        userIdFactory={boclipsSecurity.getTokenFactory(5)}
       />
       <div>
         <button onClick={loadVideoOne}>Load Video One (Kaltura)</button>
