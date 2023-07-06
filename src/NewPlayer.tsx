@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import {
-  MediaCommunitySkin,
+  MediaCommunitySkin, MediaMenu, MediaMenuButton, MediaMenuItems,
   MediaOutlet,
   MediaPlayer,
   MediaPoster,
@@ -11,10 +11,25 @@ import { ApiBoclipsClient } from 'boclips-api-client';
 import axios from 'axios';
 import { MediaPlayerElement, MediaSrc } from 'vidstack';
 import { Video } from 'boclips-api-client/dist/sub-clients/videos/model/Video';
+import { setUpEvents } from './Events';
 
 interface Props {
   videoUrl: string;
   tokenFactory: () => Promise<string>;
+}
+
+function getBaseUrl(videoUrl: string) {
+  return videoUrl.substring(0, videoUrl.indexOf('/v1'));
+}
+
+function getVideoId(videoUrl: string) {
+  return videoUrl.substring(videoUrl.indexOf('/v1/videos/') + 11);
+}
+
+function getPlaybackUrl(video: React.MutableRefObject<Video | undefined>) {
+  return video.current.playback.links
+      .hlsStream!.getOriginalLink()
+      .replace('.mp4', '.m3u8');
 }
 
 export const Player = ({ videoUrl, tokenFactory }: Props): ReactElement => {
@@ -28,48 +43,32 @@ export const Player = ({ videoUrl, tokenFactory }: Props): ReactElement => {
     async function getMediaStream() {
       apiClient.current = await ApiBoclipsClient.create(
         axios,
-        videoUrl.substring(0, videoUrl.indexOf('/v1')),
+        getBaseUrl(videoUrl),
       );
-      const id = videoUrl.substring(videoUrl.indexOf('/v1/videos/') + 11);
-      console.log(id);
-      video.current = await apiClient.current.videos.get(id);
-      const url = video.current.playback.links
-        .hlsStream!.getOriginalLink()
-        .replace('.mp4', '.m3u8');
+      video.current = await apiClient.current.videos.get(getVideoId(videoUrl));
+      const url = getPlaybackUrl(video);
       player?.current.setAttribute('src', url);
       player?.current.setAttribute('title', video.current.title);
       player?.current.setAttribute(
         'poster',
         video.current.playback.links.thumbnail.getOriginalLink(),
       );
+
       setSrc(url);
-      setupEvents();
+      setUpEvents(player.current, apiClient.current, video.current);
     }
 
     getMediaStream();
   }, [videoUrl]);
-  const setupEvents = () => {
-    player.current.addEventListener('play', () => {
-      apiClient.current?.events
-        .trackVideoInteraction(
-          video.current!,
-          'VIDEO_PLAYBACK_STARTED', //TODO(AG) - Check the real event names
-        )
-        .then((_e) => console.log(`play event sent `));
-    });
-
-    player.current.addEventListener('pause', () => {
-      apiClient.current?.events
-        .trackVideoInteraction(
-          video.current!,
-          'VIDEO_PLAYBACK_PAUSED', //TODO - Check the real event names
-        )
-        .then((_e) => console.log(`pause event sent`));
-    });
-  };
 
   return (
     <MediaPlayer src={src} preferNativeHLS={true} crossorigin="" ref={player}>
+      <MediaMenu>
+        <MediaMenuButton aria-label="Settings">
+          <span>blah</span>
+        </MediaMenuButton>
+        <MediaMenuItems><div>Embed</div></MediaMenuItems>
+      </MediaMenu>
       <MediaOutlet />
       <MediaPoster />
       <MediaCommunitySkin />
