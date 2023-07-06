@@ -1,6 +1,9 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import {
-  MediaCommunitySkin, MediaMenu, MediaMenuButton, MediaMenuItems,
+  MediaCommunitySkin,
+  MediaMenu,
+  MediaMenuButton,
+  MediaMenuItems,
   MediaOutlet,
   MediaPlayer,
   MediaPoster,
@@ -16,6 +19,7 @@ import { setUpEvents } from './Events';
 interface Props {
   videoUrl: string;
   tokenFactory: () => Promise<string>;
+  userIdFactory: () => Promise<string>;
 }
 
 function getBaseUrl(videoUrl: string) {
@@ -28,11 +32,11 @@ function getVideoId(videoUrl: string) {
 
 function getPlaybackUrl(video: React.MutableRefObject<Video | undefined>) {
   return video.current.playback.links
-      .hlsStream!.getOriginalLink()
-      .replace('.mp4', '.m3u8');
+    .hlsStream!.getOriginalLink()
+    .replace('.mp4', '.m3u8');
 }
 
-export const Player = ({ videoUrl, tokenFactory }: Props): ReactElement => {
+export const Player = ({ videoUrl, userIdFactory }: Props): ReactElement => {
   const player = useRef<MediaPlayerElement>(null);
 
   const [src, setSrc] = useState<string>('');
@@ -41,6 +45,12 @@ export const Player = ({ videoUrl, tokenFactory }: Props): ReactElement => {
 
   useEffect(() => {
     async function getMediaStream() {
+      if (userIdFactory) {
+        axios.interceptors.request.use(async (config) => {
+          config.headers['Boclips-User-Id'] = await userIdFactory();
+          return config;
+        });
+      }
       apiClient.current = await ApiBoclipsClient.create(
         axios,
         getBaseUrl(videoUrl),
@@ -62,17 +72,21 @@ export const Player = ({ videoUrl, tokenFactory }: Props): ReactElement => {
   }, [videoUrl]);
 
   return (
-    <MediaPlayer src={src} preferNativeHLS={true} crossorigin="" ref={player}>
-      <MediaMenu>
-        <MediaMenuButton aria-label="Settings">
-          <span>blah</span>
-        </MediaMenuButton>
-        <MediaMenuItems><div>Embed</div></MediaMenuItems>
-      </MediaMenu>
-      <MediaOutlet />
-      <MediaPoster />
-      <MediaCommunitySkin />
-    </MediaPlayer>
+    <>
+      <MediaPlayer src={src} preferNativeHLS={true} crossorigin="" ref={player}>
+        <MediaMenu>
+          <MediaMenuButton aria-label="Settings">
+            <span>blah</span>
+          </MediaMenuButton>
+          <MediaMenuItems>
+            <div>Embed</div>
+          </MediaMenuItems>
+        </MediaMenu>
+        <MediaPoster />
+        <MediaCommunitySkin />
+        <MediaOutlet></MediaOutlet>
+      </MediaPlayer>
+    </>
   );
 };
 
