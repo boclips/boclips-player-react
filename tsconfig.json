@@ -3,7 +3,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "sourceMap": true,
-    "lib": ["es2015", "es6", "dom"],
+    "lib": ["ES2015", "ES6", "DOM"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "plugins": [{ "name": "typescript-tslint-plugin" }],
