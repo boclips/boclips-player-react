@@ -17,6 +17,7 @@ import {
 } from '@vidstack/react/player/layouts/default';
 
 interface Props {
+  playerRef?: (player: MediaPlayerInstance) => void;
   videoUrl: string;
   userIdFactory: () => Promise<string>;
   segment?: PlaybackSegment;
@@ -40,8 +41,10 @@ export const Player = ({
   videoUrl,
   userIdFactory,
   segment,
+  playerRef
 }: Props): ReactElement => {
   const player = useRef<MediaPlayerInstance>(null);
+  playerRef(player.current)
 
   const [src, setSrc] = useState<string>('');
   const [viewType, setViewType] = useState<MediaViewType>('unknown');
@@ -73,6 +76,9 @@ export const Player = ({
       const url = getPlaybackUrl(video);
 
       setSrc(url);
+      if (segment) {
+        player.current.
+      }
       // setUpEvents(player.current, apiClient.current, video.current, segment);
     }
 
