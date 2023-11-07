@@ -15,6 +15,7 @@ import {
   defaultLayoutIcons,
   DefaultVideoLayout,
 } from '@vidstack/react/player/layouts/default';
+import { setUpEvents } from './Events';
 
 interface Props {
   playerRef?: (player: MediaPlayerInstance) => void;
@@ -41,10 +42,10 @@ export const Player = ({
   videoUrl,
   userIdFactory,
   segment,
-  playerRef
+  playerRef,
 }: Props): ReactElement => {
   const player = useRef<MediaPlayerInstance>(null);
-  playerRef(player.current)
+  playerRef(player.current);
 
   const [src, setSrc] = useState<string>('');
   const [viewType, setViewType] = useState<MediaViewType>('unknown');
@@ -58,7 +59,7 @@ export const Player = ({
       // console.log('is paused?', '->', paused);
       setViewType(viewType);
     });
-  }, []);
+  }, [viewType]);
 
   useEffect(() => {
     async function getMediaStream() {
@@ -76,10 +77,10 @@ export const Player = ({
       const url = getPlaybackUrl(video);
 
       setSrc(url);
+      setUpEvents(player.current, apiClient.current, video.current, segment);
       if (segment) {
-        player.current.
+        //player.current.
       }
-      // setUpEvents(player.current, apiClient.current, video.current, segment);
     }
 
     getMediaStream();
