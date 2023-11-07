@@ -1,21 +1,20 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import './player.css';
 import {
-  MediaCommunitySkin,
-  MediaMenu,
-  MediaMenuButton,
-  MediaMenuItems,
-  MediaOutlet,
   MediaPlayer,
-  MediaPoster,
+  MediaPlayerInstance,
+  MediaProvider,
+  MediaViewType,
+  Poster,
 } from '@vidstack/react';
-import 'vidstack/styles/defaults.css';
-import 'vidstack/styles/community-skin/video.css';
 import { ApiBoclipsClient } from 'boclips-api-client';
 import axios from 'axios';
-import { MediaPlayerElement } from 'vidstack';
 import { Video } from 'boclips-api-client/dist/sub-clients/videos/model/Video';
-import { setUpEvents } from './Events';
 import { PlaybackSegment } from 'boclips-player/dist/MediaPlayer/MediaPlayer';
+import {
+  defaultLayoutIcons,
+  DefaultVideoLayout,
+} from '@vidstack/react/player/layouts/default';
 
 interface Props {
   videoUrl: string;
@@ -42,11 +41,21 @@ export const Player = ({
   userIdFactory,
   segment,
 }: Props): ReactElement => {
-  const player = useRef<MediaPlayerElement>(null);
+  const player = useRef<MediaPlayerInstance>(null);
 
   const [src, setSrc] = useState<string>('');
+  const [viewType, setViewType] = useState<MediaViewType>('unknown');
+
   const apiClient = useRef<ApiBoclipsClient>();
   const video = useRef<Video>();
+
+  useEffect(() => {
+    // Subscribe to state updates.
+    return player.current?.subscribe(({ paused, viewType }) => {
+      // console.log('is paused?', '->', paused);
+      setViewType(viewType);
+    });
+  }, []);
 
   useEffect(() => {
     async function getMediaStream() {
@@ -62,36 +71,39 @@ export const Player = ({
       );
       video.current = await apiClient.current.videos.get(getVideoId(videoUrl));
       const url = getPlaybackUrl(video);
-      player?.current.setAttribute('src', url);
-      player?.current.setAttribute('title', video.current.title);
-      player?.current.setAttribute(
-        'poster',
-        video.current.playback.links.thumbnail.getOriginalLink(),
-      );
-
 
       setSrc(url);
-      setUpEvents(player.current, apiClient.current, video.current, segment);
+      // setUpEvents(player.current, apiClient.current, video.current, segment);
     }
 
     getMediaStream();
-  }, [videoUrl]);
+  }, [segment, userIdFactory, videoUrl]);
 
   return (
     <>
-      <MediaPlayer src={src} preferNativeHLS={true} crossorigin="" ref={player}>
-        <MediaMenu>
-          <MediaMenuButton aria-label="Settings">
-            <span>blah</span>
-          </MediaMenuButton>
-          <MediaMenuItems>
-            <div>Embed</div>
-          </MediaMenuItems>
-        </MediaMenu>
-        <MediaPoster />
-        <MediaCommunitySkin />
-        <MediaOutlet></MediaOutlet>
-      </MediaPlayer>
+      {video.current && (
+        <MediaPlayer
+          className="player"
+          title={video.current.title}
+          src={src}
+          crossorigin
+          ref={player}
+        >
+          <MediaProvider>
+            <Poster
+              className="vds-poster"
+              src={video.current.playback.links.thumbnail.getOriginalLink()}
+              alt=""
+            />
+          </MediaProvider>
+
+          {/* Layouts */}
+          <DefaultVideoLayout
+            icons={defaultLayoutIcons}
+            thumbnails={video.current.playback.links.thumbnail.getOriginalLink()}
+          />
+        </MediaPlayer>
+      )}
     </>
   );
 };
