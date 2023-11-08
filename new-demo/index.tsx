@@ -65,6 +65,7 @@ export const SampleApp = (props: Props) => {
       <NewPlayer
         videoUrl={videoUri}
         userIdFactory={boclipsSecurity.getTokenFactory(5)}
+        segment={{ start: 50, end: 55 }}
       />
       <div>
         <button onClick={loadVideoOne}>Load Video One (Kaltura)</button>

@@ -9,7 +9,7 @@ describe(`NewPlayer`, () => {
   it('playback starts at segment start', () => {
     const video = VideoFactory.sample({});
     let playerRef: MediaPlayerInstance;
-    const wrapper = render(
+   render(
       <NewPlayer
         videoUrl={video.playback.links.hlsStream.getOriginalLink()}
         userIdFactory={stubBoclipsSecurity.getTokenFactory(5)}

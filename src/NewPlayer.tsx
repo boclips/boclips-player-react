@@ -3,19 +3,13 @@ import './player.css';
 import {
   MediaPlayer,
   MediaPlayerInstance,
-  MediaProvider,
   MediaViewType,
-  Poster,
 } from '@vidstack/react';
 import { ApiBoclipsClient } from 'boclips-api-client';
 import axios from 'axios';
 import { Video } from 'boclips-api-client/dist/sub-clients/videos/model/Video';
 import { PlaybackSegment } from 'boclips-player/dist/MediaPlayer/MediaPlayer';
-import {
-  defaultLayoutIcons,
-  DefaultVideoLayout,
-} from '@vidstack/react/player/layouts/default';
-import { setUpEvents } from './Events';
+import { Provider } from './Provider';
 
 interface Props {
   playerRef?: (player: MediaPlayerInstance) => void;
@@ -45,21 +39,13 @@ export const Player = ({
   playerRef,
 }: Props): ReactElement => {
   const player = useRef<MediaPlayerInstance>(null);
-  playerRef(player.current);
+  // playerRef(player.current);
 
   const [src, setSrc] = useState<string>('');
   const [viewType, setViewType] = useState<MediaViewType>('unknown');
 
   const apiClient = useRef<ApiBoclipsClient>();
   const video = useRef<Video>();
-
-  useEffect(() => {
-    // Subscribe to state updates.
-    return player.current?.subscribe(({ paused, viewType }) => {
-      // console.log('is paused?', '->', paused);
-      setViewType(viewType);
-    });
-  }, [viewType]);
 
   useEffect(() => {
     async function getMediaStream() {
@@ -96,19 +82,7 @@ export const Player = ({
           crossorigin
           ref={player}
         >
-          <MediaProvider>
-            <Poster
-              className="vds-poster"
-              src={video.current.playback.links.thumbnail.getOriginalLink()}
-              alt=""
-            />
-          </MediaProvider>
-
-          {/* Layouts */}
-          <DefaultVideoLayout
-            icons={defaultLayoutIcons}
-            thumbnails={video.current.playback.links.thumbnail.getOriginalLink()}
-          />
+          <Provider video={video.current} segment={segment} />
         </MediaPlayer>
       )}
     </>

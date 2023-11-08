@@ -88,6 +88,6 @@
     "media-icons": "^1.0.0",
     "boclips-api-client": "^64.0.2",
     "urijs": "^1.19.11",
-    "vidstack": "^0.6.13"
+    "vidstack": "^1.5.5"
   }
 }
