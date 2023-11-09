@@ -1,9 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import './player.css';
-import {
-  MediaPlayer,
-  MediaPlayerInstance,
-} from '@vidstack/react';
+import { MediaPlayer, MediaPlayerInstance } from '@vidstack/react';
 import { ApiBoclipsClient } from 'boclips-api-client';
 import axios from 'axios';
 import { Video } from 'boclips-api-client/dist/sub-clients/videos/model/Video';
@@ -65,6 +62,12 @@ export const Player = ({
     getMediaStream();
   }, [segment, userIdFactory, videoUrl]);
 
+  const onFullscreenChange = () => {
+    apiClient.current.events
+      .trackVideoInteraction(video.current, 'VIDEO_FULLSCREEN_CHANGE')
+      .then(() => console.log(`fullscreen event sent`));
+  };
+
   return (
     <>
       {video.current && apiClient.current && (
@@ -73,6 +76,7 @@ export const Player = ({
           title={video.current.title}
           src={src}
           crossorigin
+          onFullscreenChange={onFullscreenChange}
         >
           <Provider
             client={apiClient.current}
