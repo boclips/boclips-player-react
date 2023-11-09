@@ -3,7 +3,6 @@ import './player.css';
 import {
   MediaPlayer,
   MediaPlayerInstance,
-  MediaViewType,
 } from '@vidstack/react';
 import { ApiBoclipsClient } from 'boclips-api-client';
 import axios from 'axios';
@@ -36,13 +35,8 @@ export const Player = ({
   videoUrl,
   userIdFactory,
   segment,
-  playerRef,
 }: Props): ReactElement => {
-  const player = useRef<MediaPlayerInstance>(null);
-  // playerRef(player.current);
-
   const [src, setSrc] = useState<string>('');
-  const [viewType, setViewType] = useState<MediaViewType>('unknown');
 
   const apiClient = useRef<ApiBoclipsClient>();
   const video = useRef<Video>();
@@ -63,7 +57,6 @@ export const Player = ({
       const url = getPlaybackUrl(video);
 
       setSrc(url);
-      setUpEvents(player.current, apiClient.current, video.current, segment);
       if (segment) {
         //player.current.
       }
@@ -74,15 +67,18 @@ export const Player = ({
 
   return (
     <>
-      {video.current && (
+      {video.current && apiClient.current && (
         <MediaPlayer
           className="player"
           title={video.current.title}
           src={src}
           crossorigin
-          ref={player}
         >
-          <Provider video={video.current} segment={segment} />
+          <Provider
+            client={apiClient.current}
+            video={video.current}
+            segment={segment}
+          />
         </MediaPlayer>
       )}
     </>
