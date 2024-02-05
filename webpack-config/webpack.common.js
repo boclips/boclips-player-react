@@ -65,6 +65,13 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.(vtt)$/i,
+                loader: 'file-loader',
+                options: {
+                    name: '/[name].[ext]'
+                }
+            }
         ],
     },
     plugins: [

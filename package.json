@@ -85,8 +85,9 @@
   },
   "dependencies": {
     "@vidstack/react": "^1.5.5",
-    "media-icons": "^1.0.0",
     "boclips-api-client": "^64.0.2",
+    "media-icons": "^1.0.0",
+    "moment": "^2.29.4",
     "urijs": "^1.19.11",
     "vidstack": "^1.5.5"
   }

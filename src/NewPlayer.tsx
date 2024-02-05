@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Video } from 'boclips-api-client/dist/sub-clients/videos/model/Video';
 import { PlaybackSegment } from 'boclips-player/dist/MediaPlayer/MediaPlayer';
 import { Provider } from './Provider';
+import { GenerateWebVtt } from './GenerateVtt';
 
 interface Props {
   playerRef?: (player: MediaPlayerInstance) => void;
@@ -54,9 +55,7 @@ export const Player = ({
       const url = getPlaybackUrl(video);
 
       setSrc(url);
-      if (segment) {
-        //player.current.
-      }
+      // GenerateWebVtt(video.current);
     }
 
     getMediaStream();

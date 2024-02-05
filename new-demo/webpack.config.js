@@ -9,6 +9,20 @@ module.exports = merge(common, {
   entry: {
     'demo': path.resolve(__dirname, 'index.tsx')
   },
+  module: {
+    rules: [
+      {
+        test: /\.(vtt)$/,
+        include: path.resolve(__dirname, "src"),
+        type: "asset/resource",
+
+        generator: {
+          path: "/",
+          filename: "/[name][ext]",
+        },
+      },
+    ]
+  },
   externals: {},
   plugins: [
     new HtmlWebpackPlugin({

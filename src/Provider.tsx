@@ -35,10 +35,7 @@ export const Provider = ({ video, client, segment }: Props) => {
 
   const onPlay = () => {
     client.events
-      .trackVideoInteraction(
-        video,
-        'VIDEO_PLAYBACK_STARTED',
-      )
+      .trackVideoInteraction(video, 'VIDEO_PLAYBACK_STARTED')
       .then(() => console.log(`play event sent`));
   };
 
@@ -73,7 +70,7 @@ export const Provider = ({ video, client, segment }: Props) => {
       {/* Layouts */}
       <DefaultVideoLayout
         icons={defaultLayoutIcons}
-        thumbnails={video.playback.links.thumbnail.getOriginalLink()}
+        thumbnails={'https://media-files.vidstack.io/thumbnails.vtt'}
       />
     </>
   );
