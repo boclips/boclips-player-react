@@ -132,7 +132,7 @@ resources:
 
 resource_types:
 - name: npm-resource
-  type: docker-image
+  type: registry-image
   source:
     repository: boclipsconcourse/npm-resource
     tag: 0.6.0
