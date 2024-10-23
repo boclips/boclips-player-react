@@ -17,7 +17,7 @@ export interface Props {
 
 const noop: (args?: any) => any = () => {};
 export const Player = (props: Props) => {
-  const { playerRef, videoUri, options, borderRadius } = {
+  const { playerRef, videoUri, options, borderRadius, segment } = {
     playerRef: noop,
     videoUri: null,
     options: null,
@@ -25,7 +25,6 @@ export const Player = (props: Props) => {
   };
 
   const container = React.useRef<HTMLDivElement>(null);
-
   const player = React.useRef<PlayerType>();
 
   React.useEffect(() => {
@@ -43,10 +42,10 @@ export const Player = (props: Props) => {
 
   React.useEffect(() => {
     if (videoUri) {
-      player.current.loadVideo(videoUri, props.segment);
+      player.current.loadVideo(videoUri, segment);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [videoUri]);
+  }, [videoUri, segment]);
 
   return (
     <div
