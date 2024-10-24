@@ -27,6 +27,7 @@
     "demo": "./node_modules/.bin/webpack serve --config demo/webpack.config.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "prettier-package-json --write && npm run lint -- --fix",
+    "link": "npm run build && cp package.json dist/ && npm link",
     "test": "jest --passWithNoTests"
   },
   "typings": "lib/Player.d.ts",
