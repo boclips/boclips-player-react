@@ -29,7 +29,6 @@ export const Player = (props: Props) => {
 
   React.useEffect(() => {
     player.current = PlayerFactory.get(container.current, options || {});
-
     playerRef(player.current);
 
     return () => {
@@ -38,7 +37,7 @@ export const Player = (props: Props) => {
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [segment]);
 
   React.useEffect(() => {
     if (videoUri) {
