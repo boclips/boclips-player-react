@@ -3,10 +3,9 @@
     "esModuleInterop": true,
     "jsx": "react",
     "sourceMap": true,
-    "lib": ["ES2015", "ES6", "DOM"],
+    "lib": ["ESNext", "DOM", "es2015", "es6"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "plugins": [{ "name": "typescript-tslint-plugin" }],
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
@@ -14,7 +13,7 @@
     "declaration": true,
     "target": "es5",
     "outDir": "dist",
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
   },
   "exclude": [
     "src/test-support",

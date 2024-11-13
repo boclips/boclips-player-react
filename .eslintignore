@@ -1,8 +1,0 @@
-node_modules
-dist
-webpack-config
-__mocks__
-jest.config.js
-webpack.config.js
-lib
-esm
