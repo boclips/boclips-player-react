@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/boclips/boclips-player-react/issues"
   },
-  "version": "0.1.0",
+  "version": "4.0.0",
   "main": "./dist/boclips-player-react.umd.cjs",
   "module": "./dist/boclips-player-react.js",
   "exports": {
