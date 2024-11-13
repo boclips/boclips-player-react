@@ -17,7 +17,7 @@ This project is written exclusively in TypeScript.
 ### Running the demo
 
 ```
-npm run demo 
+pnpm run demo 
 ```
 
 ### Developing locally
@@ -26,13 +26,13 @@ npm run demo
 git clone git@github.com:boclips/boclips-player-react.git
 ```
 ```
-npm install
+pnpm install
 ```
 ```
-npm run test
+pnpm run test
 ```
 ```
-npm run build
+pnpm run build
 ```
 
 ## Updates

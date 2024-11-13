@@ -4,9 +4,9 @@ set -ex
 
 git pull -r
 
-npm i
-npm run lint
-npm run test
-npm run build
+pnpm i
+pnpm run lint
+pnpm run test
+pnpm run build
 
 git push
