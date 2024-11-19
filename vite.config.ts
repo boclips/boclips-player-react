@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts';
 import { resolve } from 'path'
 
 export default defineConfig(({ command }) => ({
@@ -20,5 +21,5 @@ export default defineConfig(({ command }) => ({
       fileName: 'boclips-player-react',
     },
   },
-  plugins: [react()]
+  plugins: [react(), dts()]
   }))
