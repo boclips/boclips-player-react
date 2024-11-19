@@ -21,5 +21,10 @@ export default defineConfig(({ command }) => ({
       fileName: 'boclips-player-react',
     },
   },
-  plugins: [react(), dts()]
+  plugins: [react(), dts({
+  beforeWriteFile: (filePath, content) => ({
+    filePath: filePath.replace('Player.d.ts', 'boclips-player-react.d.ts'),
+    content,
+  }),
+})]
   }))
