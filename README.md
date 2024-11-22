@@ -8,6 +8,7 @@ Boclips Player is a framework agnostic video player for use with the Boclips API
 This project is a thin wrapper around the Boclips Player, allowing the player to be used easily in a React application.
 
 ## Usage
+
 Please refer to the [hosted docs](https://docs.boclips.com) for further usage instructions.
 
 ## Development
@@ -17,7 +18,7 @@ This project is written exclusively in TypeScript.
 ### Running the demo
 
 ```
-pnpm run demo 
+pnpm run demo
 ```
 
 ### Developing locally
@@ -25,12 +26,15 @@ pnpm run demo
 ```
 git clone git@github.com:boclips/boclips-player-react.git
 ```
+
 ```
 pnpm install
 ```
+
 ```
 pnpm run test
 ```
+
 ```
 pnpm run build
 ```
@@ -38,7 +42,7 @@ pnpm run build
 ## Updates
 
 [04-Jan-2023]: The default branch is moved from `master` to `main`. You will need to update your local copies and forks
-to modify the default branch. 
+to modify the default branch.
 
 ## Contributing
 

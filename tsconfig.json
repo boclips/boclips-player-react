@@ -13,14 +13,8 @@
     "declaration": true,
     "target": "es5",
     "outDir": "dist",
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": true
   },
-  "exclude": [
-    "src/test-support",
-    "src/**/*.test.*",
-    "src/**/__mocks__"
-  ],
-  "include": [
-    "src/"
-  ]
+  "exclude": ["src/test-support", "src/**/*.test.*", "src/**/__mocks__"],
+  "include": ["src/"]
 }
