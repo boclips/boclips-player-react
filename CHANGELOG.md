@@ -5,46 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.0.1] - 2024-11-13
+## [4.0.7] - 2024-11-13
 
 - BREAKING: Update to node 20
 - Switch from `npm` to `pnpm`
 - Switch from `webpack` to `vite`
 
-- Update dependencies:
-  - Bump `@eslint/js` to 9.14.0
+- Update devDependencies:
+  - Bump `@eslint/js` to 9.15.0
   - Bump `@testing-library/react` to 16.0.1
-  - Bump `@types/chai` to 5.0.1
   - Bump `@types/jest` to 29.5.14
-  - Bump `@types/node` to 22.9.0
+  - Bump `@types/node` to 22.9.3
   - Bump `@types/react` to 18.3.12,
   - Bump `@vitejs/plugin-react` to 4.3.3
   - Bump `audit-ci` to 7.1.0
-  - Bump `boclips-js-security` to 13.0.1
-  - Bump `boclips-player` to 7.16.0
-  - Bump `browserslist` to 4.24.2
-  - Bump `chai` to 5.1.2
-  - Bump `css-loader"` to 7.1.2
-  - Bump `eslint"` to 9.14.0
+  - Bump `eslint"` to 9.15.0
   - Bump `eslint-config-prettier"` to 9.1.0
   - Bump `eslint-plugin-prettier"` to 5.2.1
   - Bump `eslint-plugin-react"` to 7.37.2
   - Bump `eslint-plugin-react-hooks"` to 5.0.0
   - Bump `globals"` to 15.12.0
   - Bump `jest"` to 29.7.0
-  - Bump `less-loader"` to 12.2.0
-  - Bump `mini-css-extract-plugin"` to 2.9.2
   - Bump `prettier"` to 3.3.3
-  - Bump `prettier-package-json"` to 2.8.0
-  - Bump `react"` to 18.3.1
-  - Bump `react-dom"` to 18.3.1
-  - Bump `style-loader"` to 4.0.0
   - Bump `ts-jest"` to 29.2.5
   - Bump `ts-loader"` to 9.5.1
-  - Bump `typescript"` to 5.6.3
-  - Bump `typescript-eslint"` to 8.14.0
+  - Bump `typescript"` to 5.7.2
+  - Bump `typescript-eslint"` to 8.15.0
   - Bump `vite"` to 5.4.11
+  - Add `vite-plugin-dts` at 4.3.0
   - Bump `vite-plugin-html` to 3.2.2
+
+  
+  - Update dependencies:
+    - Bump `boclips-player` to 7.16.0
+    - Bump `boclips-js-security` to 13.0.1
+
+
+  - Update peerDependencies:
+    - Bump `react"` to 18.3.1
+    - Bump `react-dom"` to 18.3.1
 
 ## [3.2.3] - 2024-04-08
 
