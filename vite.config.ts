@@ -12,7 +12,7 @@ export default defineConfig(({ command }) => ({
   build: {
     rollupOptions: {
       input: { main: 'src/Player.tsx' },
-      external: ['boclips-player', 'react', 'react-dom'],
+      external: ['react', 'react-dom'],
     },
     lib: {
       entry: resolve(__dirname, 'src/Player.tsx'),
