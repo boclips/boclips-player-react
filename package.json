@@ -44,7 +44,7 @@
   },
   "typings": "lib/Player.d.ts",
   "dependencies": {
-    "boclips-js-security": "13.0.1",
+    "boclips-js-security": "14.0.0",
     "boclips-player": "7.16.0"
   },
   "peerDependencies": {

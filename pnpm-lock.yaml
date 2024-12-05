@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       boclips-js-security:
-        specifier: 13.0.1
-        version: 13.0.1(axios@1.7.7)
+        specifier: 14.0.0
+        version: 14.0.0(axios@1.7.7)
       boclips-player:
         specifier: 7.16.0
         version: 7.16.0(webpack@5.96.1)
@@ -1220,10 +1220,10 @@ packages:
   big.js@5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
 
-  boclips-js-security@13.0.1:
-    resolution: {integrity: sha512-7s/YSUCJvKbzLp6uAc9TLsoFJbCDl3lLmcd1vpd1FZZMrMSJusN/P7vL8C0W5Gw+x3YWUPbOSuIuBSjD7Zu2xA==}
+  boclips-js-security@14.0.0:
+    resolution: {integrity: sha512-RbFAS6tjS53CXp763E0O2YNozzHhP/ZgvA2gkaEzdlVwc8ftTsYS1zkUVPienENOXVuiyTYorxINXg5Tvw6BxQ==}
     peerDependencies:
-      axios: '>=0.21.1 <1.0.0'
+      axios: '>=1.7.7 <2.0.0'
 
   boclips-player@7.16.0:
     resolution: {integrity: sha512-Y4JcdO4rji7eHvuN1BS94fSnrxdqcJSnauyqY6aX8eJJhqSwQjT/2xBthO0bHdojuxbtDpEXFj9hRudQ5LxSJA==}
@@ -4784,7 +4784,7 @@ snapshots:
 
   big.js@5.2.2: {}
 
-  boclips-js-security@13.0.1(axios@1.7.7):
+  boclips-js-security@14.0.0(axios@1.7.7):
     dependencies:
       axios: 1.7.7
       jest-environment-jsdom: 29.7.0
