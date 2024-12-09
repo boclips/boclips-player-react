@@ -20,6 +20,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      vite-plugin-css-injected-by-js:
+        specifier: ^3.5.2
+        version: 3.5.2(vite@5.4.11(@types/node@22.9.3)(less@4.2.0)(sass@1.80.6)(terser@5.36.0))
     devDependencies:
       '@eslint/js':
         specifier: ^9.15.0
@@ -3291,6 +3294,11 @@ packages:
   v8-to-istanbul@9.3.0:
     resolution: {integrity: sha512-kiGUalWN+rgBJ/1OHZsBtU4rXZOfj/7rKQxULKlIzwzQSvMJUUNgPwJEEh7gU6xEVxC0ahoOBvN2YI8GH6FNgA==}
     engines: {node: '>=10.12.0'}
+
+  vite-plugin-css-injected-by-js@3.5.2:
+    resolution: {integrity: sha512-2MpU/Y+SCZyWUB6ua3HbJCrgnF0KACAsmzOQt1UvRVJCGF6S8xdA3ZUhWcWdM9ivG4I5az8PnQmwwrkC2CAQrQ==}
+    peerDependencies:
+      vite: '>2.0.0-0'
 
   vite-plugin-dts@4.3.0:
     resolution: {integrity: sha512-LkBJh9IbLwL6/rxh0C1/bOurDrIEmRE7joC+jFdOEEciAFPbpEKOLSAr5nNh5R7CJ45cMbksTrFfy52szzC5eA==}
@@ -7218,6 +7226,10 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.25
       '@types/istanbul-lib-coverage': 2.0.6
       convert-source-map: 2.0.0
+
+  vite-plugin-css-injected-by-js@3.5.2(vite@5.4.11(@types/node@22.9.3)(less@4.2.0)(sass@1.80.6)(terser@5.36.0)):
+    dependencies:
+      vite: 5.4.11(@types/node@22.9.3)(less@4.2.0)(sass@1.80.6)(terser@5.36.0)
 
   vite-plugin-dts@4.3.0(@types/node@22.9.3)(rollup@4.25.0)(typescript@5.7.2)(vite@5.4.11(@types/node@22.9.3)(less@4.2.0)(sass@1.80.6)(terser@5.36.0)):
     dependencies:
