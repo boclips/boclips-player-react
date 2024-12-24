@@ -18,17 +18,18 @@
   "version": "0.1.0",
   "main": "./dist/boclips-player-react.umd.cjs",
   "module": "./dist/boclips-player-react.js",
+  "types": "./dist/boclips-player-react.d.ts",
   "exports": {
     ".": {
       "import": "./dist/boclips-player-react.js",
-      "require": "./dist/boclips-player-react.umd.cjs"
+      "require": "./dist/boclips-player-react.umd.cjs",
+      "types": "./dist/boclips-player-react.d.ts"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",
       "require": "./dist/style.css"
     }
   },
-  "types": "lib/Player.d.ts",
   "files": [
     "dist",
     "lib"
@@ -42,7 +43,7 @@
     "link": "pnpm run build && cp package.json dist/ && pnpm link",
     "test": "jest --passWithNoTests"
   },
-  "typings": "lib/Player.d.ts",
+  "typings": "./dist/boclips-player-react.d.ts",
   "dependencies": {
     "boclips-js-security": "14.1.0",
     "boclips-player": "7.16.1"
