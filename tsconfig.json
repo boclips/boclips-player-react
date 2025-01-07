@@ -3,9 +3,10 @@
     "esModuleInterop": true,
     "jsx": "react",
     "sourceMap": true,
-    "lib": ["ESNext", "DOM", "es2015", "es6"],
+    "lib": ["ES2015", "ES6", "DOM"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "plugins": [{ "name": "typescript-tslint-plugin" }],
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
@@ -15,6 +16,12 @@
     "outDir": "dist",
     "emitDeclarationOnly": true
   },
-  "exclude": ["src/test-support", "src/**/*.test.*", "src/**/__mocks__"],
-  "include": ["src/"]
+  "exclude": [
+    "src/test-support",
+    "src/**/*.test.*",
+    "src/**/__mocks__"
+  ],
+  "include": [
+    "src/"
+  ]
 }

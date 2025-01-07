@@ -7,18 +7,17 @@ import * as React from 'react';
 import { Player } from './Player';
 import { PlaybackSegment } from 'boclips-player/dist/MediaPlayer/MediaPlayer';
 import { render } from '@testing-library/react';
-import { RenderResult } from '@testing-library/react';
 
 jest.mock('boclips-player');
 
 describe('Player', () => {
-  let playerWrapper: RenderResult;
+  let playerWrapper;
+
   let fakePlayer: PlayerType;
-  let playerRefSpy: (_: unknown) => unknown;
+  let playerRefSpy;
 
   beforeEach(() => {
-    const fakeContainer = document.createElement('div');
-    fakePlayer = PlayerFactory.get(fakeContainer);
+    fakePlayer = (PlayerFactory.get as any)();
     playerRefSpy = jest.fn();
 
     playerWrapper = render(
@@ -73,8 +72,7 @@ describe(`segmenting`, () => {
   const segment: PlaybackSegment = { start: 60, end: 120 };
 
   beforeEach(() => {
-    const fakeContainer = document.createElement('div');
-    fakePlayer = PlayerFactory.get(fakeContainer);
+    fakePlayer = (PlayerFactory.get as any)();
     playerRefSpy = jest.fn();
 
     render(

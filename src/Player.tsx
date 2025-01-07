@@ -15,7 +15,7 @@ export interface Props {
   borderRadius?: string;
 }
 
-const noop: (args?: unknown) => unknown = () => {};
+const noop: (args?: any) => any = () => {};
 export const Player = (props: Props) => {
   const { playerRef, videoUri, options, borderRadius, segment } = {
     playerRef: noop,
@@ -43,6 +43,7 @@ export const Player = (props: Props) => {
     if (videoUri) {
       player.current.loadVideo(videoUri, segment);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoUri, segment]);
 
   return (

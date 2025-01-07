@@ -18,7 +18,7 @@ This project is written exclusively in TypeScript.
 ### Running the demo
 
 ```
-pnpm run demo
+npm run demo 
 ```
 
 ### Developing locally
@@ -26,23 +26,20 @@ pnpm run demo
 ```
 git clone git@github.com:boclips/boclips-player-react.git
 ```
-
 ```
-pnpm install
+npm install
 ```
-
 ```
-pnpm run test
+npm run test
 ```
-
 ```
-pnpm run build
+npm run build
 ```
 
 ## Updates
 
 [04-Jan-2023]: The default branch is moved from `master` to `main`. You will need to update your local copies and forks
-to modify the default branch.
+to modify the default branch. 
 
 ## Contributing
 
