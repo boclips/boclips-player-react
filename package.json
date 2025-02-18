@@ -70,7 +70,7 @@
     "querystring-es3": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
-    "style-loader": "^3.3.1",
+    "style-loader": "^4.0.0",
     "ts-jest": "^27.0.7",
     "ts-loader": "^8.1.0",
     "tslint": "^6.1.3",
