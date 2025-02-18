@@ -63,7 +63,7 @@
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
     "less": "^4.2.0",
-    "less-loader": "^8.0.0",
+    "less-loader": "^12.2.0",
     "mini-css-extract-plugin": "^1.4.1",
     "prettier": "^2.4.1",
     "prettier-package-json": "^2.1.3",
