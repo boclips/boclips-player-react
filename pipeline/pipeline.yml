@@ -136,8 +136,12 @@ resource_types:
   source:
     repository: boclipsconcourse/npm-resource
     tag: 0.7.0
+    username: ((docker-hub.username))
+    password: ((docker-hub.password))
 
 - name: github-release
   type: registry-image
   source:
     repository: concourse/github-release-resource
+    username: ((docker-hub.username))
+    password: ((docker-hub.password))
