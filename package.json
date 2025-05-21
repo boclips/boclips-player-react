@@ -48,7 +48,7 @@
     "@typescript-eslint/eslint-plugin-tslint": "^7.0.2",
     "@typescript-eslint/parser": "^8.32.1",
     "audit-ci": "^6.6.1",
-    "boclips-js-security": "12.0.0",
+    "boclips-js-security": "14.1.1",
     "boclips-player": "^9.0.1",
     "browserslist": "^4.21.0",
     "chai": "^5.2.0",
