@@ -5,11 +5,6 @@ module.exports = {
     '/node_modules/',
     '/test-support/',
   ],
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.json',
-    },
-  },
   moduleFileExtensions: [
     'js',
     'ts',
@@ -33,7 +28,9 @@ module.exports = {
     '/node_modules/',
   ],
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
+      tsconfig: 'tsconfig.json',
+    }],
   },
   preset: 'ts-jest',
 }

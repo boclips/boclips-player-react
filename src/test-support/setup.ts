@@ -1,10 +1,11 @@
+import generated from '@trust/webcrypto';
+
 beforeEach(() => {
   // Can you believe JEST doesn't automatically clean up?
   document.body.innerHTML = '';
 });
 
-// @ts-expect-error using crypto for mocking uuid
-crypto = require('@trust/webcrypto');
+crypto = generated;
 
 // @ts-expect-error need to define global to remove the player error, jsdom cant play the video
 Object.defineProperty(global.window.HTMLMediaElement.prototype, 'load', {
