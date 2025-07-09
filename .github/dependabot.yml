@@ -16,3 +16,10 @@ updates:
       applies-to: version-updates
       patterns:
       - "@typescript-eslint/*"
+    jest:
+      applies-to: version-updates
+      patterns:
+      - "@types/jest"
+      - "jest"
+      - "jest-environment-jsdom"
+      - "ts-jest"
