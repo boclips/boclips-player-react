@@ -9,12 +9,18 @@ echo "$release_name" \
     > release/name
 echo "This is $release_name" \
     > release/notes
-npm="npm --prefix $app"
 
-$npm ci
-$npm run build
-$npm version "$version" \
-    --no-git-tag-version \
-    --force
+npm install -g corepack@latest
+corepack enable
+corepack prepare pnpm@latest-10 --activate
+pnpm config set store-dir ../../../root/.pnpm-store
+
+pushd $app
+  pnpm install --frozen-lockfile
+  pnpm build
+  pnpm version "$version" \
+      --no-git-tag-version \
+      --force
+popd
 
 cp -R ${app}/dist/ ${app}/package.json ${app}/README.md dist/

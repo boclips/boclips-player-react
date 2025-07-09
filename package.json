@@ -1,5 +1,6 @@
 {
   "name": "boclips-player-react",
+  "version": "0.1.0",
   "description": "A React wrapper for boclips-player",
   "license": "BSD-3-Clause",
   "author": "Boclips <engineering@boclips.com>",
@@ -14,9 +15,7 @@
   "bugs": {
     "url": "https://github.com/boclips/boclips-player-react/issues"
   },
-  "version": "0.1.0",
   "main": "dist/index.js",
-  "types": "lib/Player.d.ts",
   "files": [
     "dist",
     "lib"
@@ -25,11 +24,12 @@
     "audit": "audit-ci -m",
     "build": "NODE_ENV=production webpack --config webpack-config/webpack.prod.js && tsc --build --force ./tsconfig.json",
     "demo": "./node_modules/.bin/webpack serve --config demo/webpack.config.js",
+    "link": "pnpm build && cp package.json dist/ && pnpm link",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "prettier-package-json --write && npm run lint -- --fix",
-    "link": "npm run build && cp package.json dist/ && npm link",
-    "test": "jest --passWithNoTests"
+    "lint:fix": "prettier-package-json --write && pnpm lint -- --fix",
+    "test": "jest --passWithNoTests --verbose"
   },
+  "types": "lib/Player.d.ts",
   "typings": "lib/Player.d.ts",
   "peerDependencies": {
     "boclips-player": "^10.0.1",
