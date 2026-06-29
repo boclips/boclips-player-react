@@ -50,7 +50,7 @@
     "audit-ci": "^7.1.0",
     "boclips-js-security": "15.0.1",
     "boclips-player": "^10.0.1",
-    "browserslist": "^4.25.0",
+    "browserslist": "^4.28.4",
     "chai": "^5.2.0",
     "clean-webpack-plugin": "^4.0.0",
     "crypto": "^1.0.1",
